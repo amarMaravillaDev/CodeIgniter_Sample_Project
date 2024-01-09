@@ -6,4 +6,10 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 // Added by Amar Maravilla
+// Welcome Routes
 $route['about'] = 'Welcome/about';
+
+// PageController Routes
+$route['home'] = 'PageController';
+$route['aboutus'] = 'PageController/aboutus';
+$route['blog/(:any)'] = 'PageController/blog/$1';
