@@ -1,4 +1,5 @@
 <?php 
+// Added by Amar Maravilla
 defined('BASEPATH') OR exit('No direct script access allowed'); 
 ?>
 
