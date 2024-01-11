@@ -21,4 +21,10 @@ class StudentModel extends CI_Model {
 			return $result = "This is User 2";
 		}
 	}
+
+	public function demo() {
+		$title = "Demo Page (Model)";
+
+		return $title;
+	}  
 }
