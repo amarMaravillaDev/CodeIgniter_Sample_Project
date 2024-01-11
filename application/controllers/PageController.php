@@ -21,4 +21,19 @@ class PageController extends CI_Controller {
 
         $this->load->view('blog');
     }
+
+    public function demo() {
+        echo "This is About Us Page.";
+
+        $this->load->model('StudentModel', 'Student');
+        
+        $title = $this->Student->demo();
+
+        $data['title'] = $title;
+
+        // $data['title'] = "Demo Page";
+        $data['body'] = "Welcome to Demo Page";
+
+        $this->load->view('demo', $data);
+    }
 }
