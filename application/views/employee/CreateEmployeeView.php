@@ -15,28 +15,38 @@
                     </h5>
                 </div>
                 <div class="card-body">
-                    <form action="">
+                    <form action="<?= base_url('employee/store'); ?>" method="POST">
+                        <!-- First Name -->
+                        <div class="form-group">
+                            <label for="">First Name</label>
+                            <input name="employeeFirstName" type="text" class="form-control">
+                            <small><?= form_error('employeeFirstName') ?></small>
+                        </div>
+
                         <!-- Last Name -->
                         <div class="form-group">
                             <label for="">Last Name</label>
-                            <input type="text" class="form-control">
+                            <input name="employeeLastName" type="text" class="form-control">
+                            <small><?= form_error('employeeLastName') ?></small>
                         </div>
 
                         <!-- Phone Number -->
                         <div class="form-group">
                             <label for="">Phone Number</label>
-                            <input type="text" class="form-control">
+                            <input name="employeePhoneNumber" type="text" class="form-control">
+                            <small><?= form_error('employeePhoneNumber') ?></small>
                         </div>
 
                         <!-- Email Address -->
                         <div class="form-group">
                             <label for="">Email Address</label>
-                            <input type="text" class="form-control">
+                            <input name="employeeEmailAddress" type="text" class="form-control">
+                            <small><?= form_error('employeeEmailAddress') ?></small>
                         </div>
 
                         <!-- Create -->
                         <div class="form-group">
-                            <button class="btn btn-primary">
+                            <button name="createEmployee" class="btn btn-primary">
                                 Create Employee
                             </button>
                         </div>
