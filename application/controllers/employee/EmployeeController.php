@@ -10,7 +10,11 @@
 
         public function index() {
             $this->load->view('template/Header');
-            $this->load->view('employee/EmployeeView');
+
+            $this->load->model('EmployeeModel', 'Employee');
+            $employeeData['employeeData'] = $this->Employee->getEmployee();
+
+            $this->load->view('employee/EmployeeView', $employeeData);
             $this->load->view('template/Footer');
         }
 
