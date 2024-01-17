@@ -27,17 +27,23 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php
+                                foreach ($employeeData as $employeeDetails) {
+                            ?>
                             <tr>
-                                <td>1</td>
-                                <td>Amar</td>
-                                <td>Maravilla</td>
-                                <td>09123456789</td>
-                                <td>amar@pogi.com</td>
+                                <td><?= $employeeDetails->EMPLOYEE_ID ?></td>
+                                <td><?= $employeeDetails->FIRST_NAME ?></td>
+                                <td><?= $employeeDetails->LAST_NAME ?></td>
+                                <td><?= $employeeDetails->PHONE_NUMBER ?></td>
+                                <td><?= $employeeDetails->EMAIL_ADDRESS ?></td>
                                 <td>
                                     <a href="" class="btn btn-success">Edit</a>
                                     <a href="" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
+                            <?php
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>
