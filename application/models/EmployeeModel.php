@@ -7,7 +7,13 @@
 
             return $query->result();
         }
-        public function insertEmployee($employeeData) {
+        public function createEmployee($employeeData) {
             return $this->db->insert('EMPLOYEE_DATA', $employeeData);
-        }                  
+        }           
+        
+        public function editEmployee($employeeID) {
+            $query = $this->db->get_where('EMPLOYEE_DATA', array('EMPLOYEE_ID' => $employeeID));
+
+            return $query->row();
+        }
     }
