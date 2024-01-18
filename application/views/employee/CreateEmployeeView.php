@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5>
-                        How to INSERT EMPLOYEE DATA into DATABASE
+                        How to CREATE EMPLOYEE DATA into DATABASE
                     
                         <a href="<?= base_url('employee'); ?>" class="btn btn-danger float-right">Back</a>
                     </h5>
@@ -47,7 +47,7 @@
                         <!-- Create -->
                         <div class="form-group">
                             <button name="createEmployee" class="btn btn-primary">
-                                Create Employee
+                                Create
                             </button>
                         </div>
                     </form>
