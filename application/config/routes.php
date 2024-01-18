@@ -18,3 +18,4 @@
     $route['employee'] = 'employee/EmployeeController';
     $route['employee/create'] = 'employee/EmployeeController/create';
     $route['employee/store'] = 'employee/EmployeeController/store';
+    $route['employee/edit/(:num)'] = 'employee/EmployeeController/edit/$1';
