@@ -12,6 +12,7 @@
             $this->load->view('template/Header');
 
             $this->load->model('EmployeeModel', 'Employee');
+            
             $employeeData['employeeData'] = $this->Employee->getEmployee();
 
             $this->load->view('employee/EmployeeView', $employeeData);
@@ -40,7 +41,7 @@
 
                 $this->load->model('EmployeeModel', 'Employee');
 
-                $this->Employee->insertEmployee($employeeData);
+                $this->Employee->createEmployee($employeeData);
 
                 redirect(base_url('employee'));
             }
@@ -52,5 +53,16 @@
 
             // var_dump($employeeData);
             // echo json_encode($employeeDat);
+        }
+
+        public function edit($employeeID) {
+            $this->load->view('template/Header');
+
+            $this->load->model('EmployeeModel', 'Employee');
+
+            $employeeData['employeeData'] = $this->Employee->editEmployee($employeeID);
+
+            $this->load->view('employee/EditEmployeeView', $employeeData);
+            $this->load->view('template/Footer');
         }
     }
