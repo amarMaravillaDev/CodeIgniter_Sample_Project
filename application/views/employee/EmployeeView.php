@@ -37,7 +37,7 @@
                                 <td><?= $employeeDetails->PHONE_NUMBER ?></td>
                                 <td><?= $employeeDetails->EMAIL_ADDRESS ?></td>
                                 <td>
-                                    <a href="" class="btn btn-success">Edit</a>
+                                    <a href="<?php echo base_url('employee/edit/' . $employeeDetails->EMPLOYEE_ID); ?>" class="btn btn-success">Edit</a>
                                     <a href="" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
