@@ -24,6 +24,7 @@
                                 <th>Phone Number</th>
                                 <th>Email Address</th>
                                 <th>Actions</th>
+                                <th>Actions with Message Box</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,7 +39,10 @@
                                 <td><?= $employeeDetails->EMAIL_ADDRESS ?></td>
                                 <td>
                                     <a href="<?php echo base_url('employee/edit/' . $employeeDetails->EMPLOYEE_ID); ?>" class="btn btn-success">Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
+                                    <a href="<?php echo base_url('employee/delete/' . $employeeDetails->EMPLOYEE_ID); ?>" class="btn btn-danger">Delete</a>
+                                </td>
+                                <td>
+                                    <button value="<?= $employeeDetails->EMPLOYEE_ID; ?>" class="btn btn-danger deleteEmployee" id="">Delete</button>
                                 </td>
                             </tr>
                             <?php
