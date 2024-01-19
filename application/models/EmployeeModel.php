@@ -16,4 +16,16 @@
 
             return $query->row();
         }
+
+        public function updateEmployee($employeeData, $employeeID) {
+            $query = $this->db->update('EMPLOYEE_DATA', $employeeData, array('EMPLOYEE_ID' => $employeeID));
+            
+            return $query;
+        }
+
+        public function deleteEmployee($employeeID) {
+            $query = $this->db->delete('EMPLOYEE_DATA', array('EMPLOYEE_ID' => $employeeID));
+
+            return $query;
+        }
     }
