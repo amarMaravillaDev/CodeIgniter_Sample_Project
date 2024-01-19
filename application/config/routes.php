@@ -19,3 +19,6 @@
     $route['employee/create'] = 'employee/EmployeeController/create';
     $route['employee/store'] = 'employee/EmployeeController/store';
     $route['employee/edit/(:num)'] = 'employee/EmployeeController/edit/$1';
+    $route['employee/update/(:num)'] = 'employee/EmployeeController/update/$1';
+    $route['employee/delete/(:num)'] = 'employee/EmployeeController/delete/$1';
+    $route['employee/confirmdelete/(:num)']['DELETE'] = 'employee/EmployeeController/delete/$1';
