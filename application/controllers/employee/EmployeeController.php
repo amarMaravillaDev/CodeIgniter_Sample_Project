@@ -43,6 +43,8 @@
 
                 $this->Employee->createEmployee($employeeData);
 
+                $this->session->set_flashdata('status', 'Employee Data Created Successfully.');
+
                 redirect(base_url('employee'));
             }
             else {
@@ -84,6 +86,8 @@
     
                 $employeeData['employeeData'] = $this->Employee->updateEmployee($employeeData, $employeeID);
                 
+                $this->session->set_flashdata('status', 'Employee Data Updated Successfully.');
+
                 redirect(base_url('employee'));
             }
             else {
@@ -95,7 +99,7 @@
 
         public function delete($employeeID) {
             $this->load->model('EmployeeModel', 'Employee');
-            
+
             $this->Employee->deleteEmployee($employeeID);
 
             redirect(base_url('employee'));
