@@ -8,6 +8,11 @@
         <div class="col-md-12 mt-4">
             <div class="card">
                 <div class="card-header">
+                    <?php if($this->session->flashdata('status')) { ?>
+                    <div class="alert alert-success">
+                        <?= $this->session->flashdata('status') ?>
+                    </div>
+                    <?php } ?>
                     <h5>
                         How to FETCH EMPLOYEE DATA from DATABASE
                     
@@ -15,7 +20,7 @@
                     </h5>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="employeeTable">
                         <thead>
                             <tr>
                                 <th>ID</th>
