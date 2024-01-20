@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    let employeeTable = new DataTable('#employeeTable');
+    
     $(".deleteEmployee").on('click', function(event) {
         event.preventDefault();
 
