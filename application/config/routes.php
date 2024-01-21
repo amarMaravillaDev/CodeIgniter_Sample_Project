@@ -14,6 +14,10 @@
     $route['aboutus'] = 'PageController/aboutus';
     $route['blog/(:any)'] = 'PageController/blog/$1';
 
+    // Register Routes
+    $route['register']['GET'] = 'auth/RegisterController';
+    $route['register']['POST'] = 'auth/RegisterController/register';
+
     // Employee Routes
     $route['employee'] = 'employee/EmployeeController';
     $route['employee/create'] = 'employee/EmployeeController/create';
