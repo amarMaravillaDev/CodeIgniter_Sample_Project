@@ -12,13 +12,13 @@
             $this->load->model('UsersModel');
         }
 
-        public function index(){
+        public function index() {
             $this->load->view('template/Header');
             $this->load->view('auth/RegisterView');
             $this->load->view('template/Footer');
         }
 
-        public function register(){
+        public function register() {
             $this->form_validation->set_rules('regFirstName', 'First Name', 'trim|required|alpha');
             $this->form_validation->set_rules('regLastName', 'Last Name', 'trim|required|alpha');
             $this->form_validation->set_rules('regEmailAddress', 'Email Address', 'trim|required|valid_email|is_unique[USERS.EMAIL_ADDRESS]');
