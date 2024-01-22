@@ -9,7 +9,12 @@
             <div class="col-md-7">
                 <div class="card shadow">
                     <div class="card-header">
-                        <h5>Register</h5>
+                        <?php if($this->session->flashdata('status')) { ?>
+                        <div class="alert alert-success">
+                            <?= $this->session->flashdata('status') ?>
+                        </div>
+                        <?php } ?>
+                        <h5>Registration Form</h5>
                     </div>
                     <div class="card-body">
                         <form action="<?= base_url('register') ?>" method="POST">
