@@ -18,6 +18,13 @@
     $route['register']['GET'] = 'auth/RegisterController';
     $route['register']['POST'] = 'auth/RegisterController/register';
 
+    // Login Routes
+    $route['login']['GET'] = 'auth/LoginController';
+    $route['login']['POST'] = 'auth/LoginController/login';
+
+    // Users Routes
+    $route['users']['GET'] = 'users/UsersController';
+
     // Employee Routes
     $route['employee'] = 'employee/EmployeeController';
     $route['employee/create'] = 'employee/EmployeeController/create';
