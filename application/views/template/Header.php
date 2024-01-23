@@ -25,3 +25,5 @@
     </head>
 
     <body>
+
+    <?php include('NavBar.php'); ?>
