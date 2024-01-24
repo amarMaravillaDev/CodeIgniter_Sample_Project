@@ -25,6 +25,9 @@
     // Users Routes
     $route['users']['GET'] = 'users/UsersController';
 
+    // Admin Routes
+    $route['admins']['GET'] = 'admins/AdminsController';
+
     // Employee Routes
     $route['employee'] = 'employee/EmployeeController';
     $route['employee/create'] = 'employee/EmployeeController/create';
