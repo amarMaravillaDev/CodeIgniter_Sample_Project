@@ -6,6 +6,12 @@
         public function __construct() {
             parent::__construct();
 
+            if($this->session->has_userdata('client')) {
+                $this->session->set_flashdata('loginSuccess', 'You are Already Logged In.');
+
+                redirect(base_url('users'));
+            }
+
             $this->load->helper('form');
             $this->load->library('form_validation');
 
