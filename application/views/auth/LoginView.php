@@ -7,10 +7,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-5">
+                
                 <?php if($this->session->flashdata('loginFailed')) { ?>
-                <div class="alert alert-danger">
-                    <?= $this->session->flashdata('loginFailed') ?>
-                </div>
+                    <div class="alert alert-danger">
+                        <?= $this->session->flashdata('loginFailed') ?>
+                    </div>
                 <?php } ?>
 
                 <div class="card shadow">
