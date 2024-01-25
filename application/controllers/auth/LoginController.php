@@ -6,6 +6,12 @@
         public function __construct() {
             parent::__construct();
 
+            if($this->session->has_userdata('client')) {
+                $this->session->set_flashdata('loginSuccess', 'You are Already Logged In.');
+
+                redirect(base_url('users'));
+            }
+
             $this->load->helper('form');
             $this->load->library('form_validation');
 
@@ -44,7 +50,7 @@
 
                     // echo json_encode($usersDetails, JSON_PRETTY_PRINT);
 
-                    $this->session->set_userdata('authenticated', '1');
+                    $this->session->set_userdata('client', '1');
                     $this->session->set_userdata('usersDetails', $usersDetails);
 
                     $this->session->set_flashdata('loginSuccess', 'You are Logged In Successfully.');
