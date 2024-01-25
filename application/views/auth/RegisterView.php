@@ -9,11 +9,13 @@
             <div class="col-md-7">
                 <div class="card shadow">
                     <div class="card-header">
+                        
                         <?php if($this->session->flashdata('status')) { ?>
-                        <div class="alert alert-success">
-                            <?= $this->session->flashdata('status') ?>
-                        </div>
+                            <div class="alert alert-success">
+                                <?= $this->session->flashdata('status') ?>
+                            </div>
                         <?php } ?>
+
                         <h5>Registration Form</h5>
                     </div>
                     <div class="card-body">
