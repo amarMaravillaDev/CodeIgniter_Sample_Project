@@ -22,6 +22,9 @@
     $route['login']['GET'] = 'auth/LoginController';
     $route['login']['POST'] = 'auth/LoginController/login';
 
+    // Logout Routes
+    $route['logout']['GET'] = 'auth/LogoutController/logout';
+
     // Users Routes
     $route['users']['GET'] = 'users/UsersController';
 
