@@ -25,20 +25,24 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('register'); ?>">Register</a>
                     </li>
+                <?php 
+                    }
+                    else {
+                ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                            <?= $this->session->userdata('usersDetails')['FIRST_NAME']; ?>
+                            <?= $this->session->userdata('usersDetails')['LAST_NAME']; ?>
+                        </a>
+                        <div class="dropdown-menu">
+                            <!-- <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="<?= base_url('logout'); ?>">Log Out</a>
+                        </div>
+                    </li>
                 <?php } ?>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                        <?= $this->session->userdata('usersDetails')['FIRST_NAME']; ?>
-                        <?= $this->session->userdata('usersDetails')['LAST_NAME']; ?>
-                    </a>
-                    <div class="dropdown-menu">
-                        <!-- <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div> -->
-                        <a class="dropdown-item" href="#">Log Out</a>
-                    </div>
-                </li>
             </ul>
         </div>
     </div>
