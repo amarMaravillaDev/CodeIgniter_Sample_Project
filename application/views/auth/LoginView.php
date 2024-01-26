@@ -6,35 +6,46 @@
 <div class="py-5">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-5">
-                
+            <div class="col-lg-5">
+
                 <?php if($this->session->flashdata('loginFailed')) { ?>
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <?= $this->session->flashdata('loginFailed') ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php } ?>
+
+                <?php if($this->session->flashdata('logoutSuccess')) { ?>
+                    <div class="alert alert-info">
+                        <?= $this->session->flashdata('logoutSuccess') ?>
                     </div>
                 <?php } ?>
 
                 <div class="card shadow">
-                    <div class="card-header">
-                        <h5>Login Form</h5>
-                    </div>
-                    <div class="card-body">
                     <form action="<?= base_url('login') ?>" method="POST">
-                        <div class="form-group">
-                            <label for="loginEmailAddress">Email Address</label>
-                            <input value="<?= set_value('loginEmailAddress'); ?>" type="text" name="loginEmailAddress" id="loginEmailAddress" class="form-control" placeholder="Enter Your Email Address">
-                            <small><?= form_error('loginEmailAddress') ?></small>
+                        <div class="card-header">
+                            <h5 class="my-2">Login Form</h5>
                         </div>
-                        <div class="form-group">
-                            <label for="loginPassword">Password</label>
-                            <input type="password" name="loginPassword" id="loginPassword" class="form-control" placeholder="Enter Your Password">
-                            <small><?= form_error('loginPassword') ?></small>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="loginEmailAddress">Email Address</label>
+                                <input value="<?= set_value('loginEmailAddress'); ?>" type="text" name="loginEmailAddress" id="loginEmailAddress" class="form-control <?php if(form_error('loginEmailAddress')) { ?> is-invalid <?php } ?>" placeholder="Enter Your Email Address">
+                                <small class="invalid-feedback"><?= form_error('loginEmailAddress') ?></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="loginPassword">Password</label>
+                                <input type="password" name="loginPassword" id="loginPassword" class="form-control <?php if(form_error('loginPassword')) { ?> is-invalid <?php } ?>" placeholder="Enter Your Password">
+                                <small class="invalid-feedback"><?= form_error('loginPassword') ?></small>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success">Login</button>
+                        <div class="card-footer">
+                            <div class="form-group m-0 justify-content-end d-flex">
+                                <button type="submit" class="btn btn-success">Login</button>
+                            </div>
                         </div>
                     </form>
-                </div>
                 </div>
             </div>
         </div>
