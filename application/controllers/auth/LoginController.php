@@ -6,8 +6,8 @@
         public function __construct() {
             parent::__construct();
 
-            if($this->session->has_userdata('client')) {
-                $this->session->set_flashdata('loginSuccess', 'You are Already Logged In.');
+            if($this->session->has_userdata('userType')) {
+                $this->session->set_flashdata('loginAccess', 'You are Already Logged In.');
 
                 redirect(base_url('users'));
             }
@@ -25,6 +25,8 @@
         }
 
         public function login() {
+            $this->session->set_flashdata('login', 'login');
+            
             $this->form_validation->set_rules('loginEmailAddress', 'Email Address', 'trim|required|valid_email');
             $this->form_validation->set_rules('loginPassword', 'Password', 'trim|required');
 
@@ -50,7 +52,7 @@
 
                     // echo json_encode($usersDetails, JSON_PRETTY_PRINT);
 
-                    $this->session->set_userdata('client', '1');
+                    $this->session->set_userdata('userType', $response->USER_TYPE);
                     $this->session->set_userdata('usersDetails', $usersDetails);
 
                     $this->session->set_flashdata('loginSuccess', 'You are Logged In Successfully.');
