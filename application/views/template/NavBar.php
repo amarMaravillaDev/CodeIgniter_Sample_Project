@@ -18,7 +18,7 @@
                     <a class="nav-link" href="<?= base_url('admins'); ?>">Admin Page</a>
                 </li>
 
-                <?php if(!$this->session->has_userdata('client')) { ?>
+                <?php if(!$this->session->has_userdata('userType')) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('login'); ?>">Login</a>
                     </li>
