@@ -6,8 +6,8 @@
         public function __construct() {
             parent::__construct();
 
-            if($this->session->has_userdata('client')) {
-                $this->session->set_flashdata('loginSuccess', 'You are Already Logged In.');
+            if($this->session->has_userdata('userType')) {
+                $this->session->set_flashdata('registerAccess', 'You are Already Logged In.');
 
                 redirect(base_url('users'));
             }
@@ -25,9 +25,15 @@
         }
 
         public function register() {
+            $this->session->set_flashdata('register', 'register');
+
             $this->form_validation->set_rules('regFirstName', 'First Name', 'trim|required|alpha');
             $this->form_validation->set_rules('regLastName', 'Last Name', 'trim|required|alpha');
-            $this->form_validation->set_rules('regEmailAddress', 'Email Address', 'trim|required|valid_email|is_unique[USERS.EMAIL_ADDRESS]');
+            $this->form_validation->set_rules('regEmailAddress', 'Email Address', 'trim|required|valid_email|is_unique[USERS.EMAIL_ADDRESS]', 
+                array(
+                    "is_unique" => "The %s \"" . $this->input->post('regEmailAddress') . "\" is Already Exists."
+                )
+            );
             $this->form_validation->set_rules('regPassword', 'Password', 'trim|required');
             $this->form_validation->set_rules('regConfirmPassword', 'Confirm Password', 'trim|required|matches[regPassword]');
         
@@ -46,12 +52,12 @@
                 $checkRegister = $regUser->registerUser($usersData);
 
                 if($checkRegister) {
-                    $this->session->set_flashdata('status','User Registered Successfully.');
+                    $this->session->set_flashdata('registerSuccess','User Registered Successfully.');
 
-                    redirect(base_url('login'));
+                    redirect(base_url('register'));
                 }
                 else {
-                    $this->session->set_flashdata('status','User Registration Failed, Something Went Wrong.');
+                    $this->session->set_flashdata('registerFailed','User Registration Failed, Something Went Wrong.');
 
                     redirect(base_url('register'));
                 }
