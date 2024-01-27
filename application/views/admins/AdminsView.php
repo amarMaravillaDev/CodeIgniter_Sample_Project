@@ -13,7 +13,7 @@
                     </div>
                 <?php } ?>
 
-                <div class="card">
+                <div class="card shadow-sm">
                     <div class="card-header">
                         <h5 class="my-2">Admin's Page</h5>
                     </div>
