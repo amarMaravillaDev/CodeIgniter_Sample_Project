@@ -36,4 +36,10 @@ class PageController extends CI_Controller {
 
         $this->load->view('demo', $data);
     }
+
+    public function accessDenied() {
+        $this->load->view('template/Header');
+        $this->load->view('errors/AccessDenied');
+        $this->load->view('template/Footer');
+    }
 }
