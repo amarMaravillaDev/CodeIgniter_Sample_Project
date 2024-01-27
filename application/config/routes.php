@@ -11,8 +11,9 @@
 
     // PageController Routes
     $route['home'] = 'PageController';
-    $route['aboutus'] = 'PageController/aboutus';
+    $route['about_us'] = 'PageController/aboutus';
     $route['blog/(:any)'] = 'PageController/blog/$1';
+    $route['access_denied']['GET'] = 'PageController/accessDenied';
 
     // Register Routes
     $route['register']['GET'] = 'auth/RegisterController';
