@@ -15,6 +15,6 @@
 
         <!-- <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script> -->
 
-        <script src="assets/EmployeeScript.js"></script>
+        <script src="assets/js/EmployeeScript.js"></script>
     </body>
 </html>
