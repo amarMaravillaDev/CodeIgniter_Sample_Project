@@ -8,20 +8,32 @@
             <div class="col-md-12">
                 
                 <?php if($this->session->flashdata('loginSuccess')) { ?>
-                    <div class="alert alert-success">
+                    <div class="alert alert-success shadow-sm">
                         <?= $this->session->flashdata('loginSuccess') ?>
                     </div>
                 <?php } ?>
 
-                <div class="card">
+                <?php if($this->session->flashdata('loginAccess')) { ?>
+                    <div class="alert alert-primary shadow-sm">
+                        <?= $this->session->flashdata('loginAccess') ?>
+                    </div>
+                <?php } ?>
+
+                <?php if($this->session->flashdata('registerAccess')) { ?>
+                    <div class="alert alert-primary shadow-sm">
+                        <?= $this->session->flashdata('registerAccess') ?>
+                    </div>
+                <?php } ?>
+
+                <div class="card shadow-sm">
                     <div class="card-header">
-                        <h5>User's Page</h5>
+                        <h5 class="my-2">User's Page</h5>
                     </div>
                     <div class="card-body">
                         <h6>This is User's Page</h6>
                         <h5>First Name: <?= $this->session->userdata('usersDetails')['FIRST_NAME']; ?></h5>
                         <h5>Last Name: <?= $this->session->userdata('usersDetails')['LAST_NAME']; ?></h5>
-                        <h5>Email Address: <?= $this->session->userdata('usersDetails')['EMAIL_ADDRESS']; ?></h5>
+                        <h5 class="m-0">Email Address: <?= $this->session->userdata('usersDetails')['EMAIL_ADDRESS']; ?></h5>
                     </div>
                 </div>
             </div>
