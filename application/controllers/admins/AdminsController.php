@@ -7,6 +7,8 @@
             parent::__construct();
 
             $this->load->model('AuthenticationModel', 'Authenticate');
+
+            $this->Authenticate->checkAdmin();
         }
 
         public function index() {
