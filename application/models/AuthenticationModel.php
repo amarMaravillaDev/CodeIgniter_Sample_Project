@@ -5,8 +5,8 @@
         public function __construct() {
             parent::__construct();
 
-            if($this->session->has_userdata('client')) {
-                if($this->session->userdata('client') == '1') {
+            if($this->session->has_userdata('userType')) {
+                if($this->session->userdata('userType') == '1') {
                     // echo "User";
                 }
             }
@@ -15,5 +15,20 @@
 
                 redirect(base_url('login'));
             }
-        }               
+        }    
+        
+        public function checkAdmin() {
+            if($this->session->has_userdata('userType')) {
+                if($this->session->userdata('userType') != '2') {
+                    $this->session->set_flashdata('adminFailed', 'Access Denied. You are Not an Admin.');
+
+                    redirect(base_url('access_denied'));
+                }
+            }
+            else {
+                $this->session->set_flashdata('notLogin', 'Log In First.');
+
+                redirect(base_url('login'));
+            }
+        }
     }
