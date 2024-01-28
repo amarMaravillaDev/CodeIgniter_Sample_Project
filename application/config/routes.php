@@ -40,3 +40,8 @@
     $route['employee/update/(:num)'] = 'employee/EmployeeController/update/$1';
     $route['employee/delete/(:num)'] = 'employee/EmployeeController/delete/$1';
     $route['employee/confirmdelete/(:num)']['DELETE'] = 'employee/EmployeeController/delete/$1';
+
+    // Simple CRUD Routes
+    // Login Controller Routes
+    $route['simple_crud/login']['GET'] = 'simple_crud/authenticate/Login';
+    $route['simple_crud/login']['POST'] = 'simple_crud/authenticate/Login/login';
