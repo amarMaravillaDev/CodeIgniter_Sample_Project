@@ -1,0 +1,38 @@
+/* All */
+* {
+    font-family: 'Tilt Neon', sans-serif;
+    scroll-behavior: smooth;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    font-size: 12px;
+}
+
+* {
+    transition: .15s ease-in-out !important;
+}
+
+/* HTML, Body */
+html, body {
+    height: 100%;
+}
+
+/* Label */
+label::after {
+    background-color: transparent !important;
+}
+
+/* Show Password */
+#showPassword:hover {
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-primary-rgb)) !important;
+}
+
+/* Register Link */
+#registerLink {
+    border: solid 1px transparent;
+}
+
+#registerLink:hover {
+    /* text-decoration: underline !important; */
+    border-bottom: solid 1px rgba(var(--bs-primary-rgb));
+}
