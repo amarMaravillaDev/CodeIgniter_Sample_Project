@@ -15,5 +15,5 @@ const login = () => {
     }
 };
 
-const readyDocument = $document.ready(() => {
+const readyDocument = $('document').ready(() => {
 });
