@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-9 col-md-10 col-sm-12">
-                        <form action="#" id="registerForm" method="POST">
+                        <form action="<?= base_url('simple_crud/register'); ?>" id="registerForm" method="POST">
                             <div class="card shadow-lg border border-0 rounded-5 overflow-hidden">
                                 <div class="card-header d-flex align-items-center gap-3 p-4">
                                     <i class="fs-3 text-primary fa-solid fa-circle"></i>
@@ -36,12 +36,12 @@
                                                             <span class="input-group-text px-4">
                                                                 <i class="fa-solid fa-user"></i>
                                                             </span>
-                                                            <div class="form-floating">
-                                                                <input type="text" class="form-control" id="regFirstName" name="regFirstName" placeholder="First Name">
+                                                            <div class="form-floating <?= form_error('regFirstName')? "is-invalid" : "is-valid" ?>">
+                                                                <input value="<?= set_value('regFirstName') ?>" type="text" class="form-control <?= form_error('regFirstName')? "is-invalid" : "is-valid"; ?>" id="regFirstName" name="regFirstName" placeholder="First Name">
                                                                 <label for="regFirstName">First Name</label>
                                                             </div>
                                                             <div class="invalid-feedback">
-                                                                    
+                                                                <?= form_error('regFirstName'); ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -55,7 +55,7 @@
                                                                 <label for="regMiddleName">Middle Name (Optional)</label>
                                                             </div>
                                                             <div class="invalid-feedback">
-                                                                    
+                                                                <?= form_error('regMiddleName'); ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -73,7 +73,7 @@
                                                                 <label for="regLastName">Last Name</label>
                                                             </div>
                                                             <div class="invalid-feedback">
-                                                                    
+                                                                <?= form_error('regLastName'); ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -87,7 +87,7 @@
                                                                 <label for="regSuffix">Suffix (Optional)</label>
                                                             </div>
                                                             <div class="invalid-feedback">
-                                                                    
+                                                                <?= form_error('regSuffix'); ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -110,7 +110,7 @@
                                                         <label for="regGender">Gender</label>
                                                     </div>
                                                     <div class="invalid-feedback">
-                                                            
+                                                        <?= form_error(''); ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -129,7 +129,7 @@
                                                                 <label for="regBirthDate">Birth Date</label>
                                                             </div>
                                                             <div class="invalid-feedback">
-                                                                    
+                                                                <?= form_error(''); ?> 
                                                             </div>
                                                         </div>
                                                     </div>
@@ -143,7 +143,7 @@
                                                                 <label for="regAge">Age</label>
                                                             </div>
                                                             <div class="invalid-feedback">
-                                                                    
+                                                                <?= form_error(''); ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -164,7 +164,7 @@
                                                                 <label for="regContactNumber">Contact Number</label>
                                                             </div>
                                                             <div class="invalid-feedback">
-                                                                    
+                                                                <?= form_error(''); ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -178,7 +178,7 @@
                                                                 <label for="regEmailAddress">Email Address</label>
                                                             </div>
                                                             <div class="invalid-feedback">
-                                                                    
+                                                                <?= form_error(''); ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -199,7 +199,7 @@
                                                                 <i class="fa-solid fa-eye-slash fs-5"></i>
                                                             </span>
                                                             <div class="invalid-feedback">
-                                                                    
+                                                                <?= form_error(''); ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -216,7 +216,7 @@
                                                                 <i class="fa-solid fa-eye-slash fs-5"></i>
                                                             </span>
                                                             <div class="invalid-feedback">
-                                                                    
+                                                                <?= form_error(''); ?>  
                                                             </div>
                                                         </div>
                                                     </div>
