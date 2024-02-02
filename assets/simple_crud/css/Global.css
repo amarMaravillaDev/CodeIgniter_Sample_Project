@@ -88,3 +88,16 @@ label::after {
     /* text-decoration: underline !important; */
     border-bottom: solid 1px rgba(var(--bs-primary-rgb));
 }
+
+/* Icons */
+i {
+    width: 10px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Invalid Feedback */
+.invalid-feedback p {
+    font-size: 5px;
+}
