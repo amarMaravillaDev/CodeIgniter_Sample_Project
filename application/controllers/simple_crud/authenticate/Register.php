@@ -23,11 +23,16 @@
         }
 
         public function register() {
+            $this->session->set_flashdata('register', 'register');
+
             // Form Validations
             $this->form_validation->set_rules('regFirstName', 'First Name', 'trim|required|alpha|min_length[2]|max_length[30]');
-            $this->form_validation->set_rules('regMiddleName', 'First Name', 'trim|required|alpha|min_length[2]|max_length[30]');
-            $this->form_validation->set_rules('regLastName', 'First Name', 'trim|required|alpha|min_length[2]|max_length[30]');
-            $this->form_validation->set_rules('regSuffix', 'First Name', 'trim|alpha|min_length[2]|max_length[30]');
+            $this->form_validation->set_rules('regMiddleName', 'Middle Name', 'trim|alpha|min_length[2]|max_length[30]');
+            $this->form_validation->set_rules('regLastName', 'Last Name', 'trim|required|alpha|min_length[2]|max_length[30]');
+            $this->form_validation->set_rules('regSuffix', 'Suffix', 'trim|alpha|min_length[2]|max_length[30]');
+            $this->form_validation->set_rules('regGender', 'Gender', 'trim|required');
+            $this->form_validation->set_rules('regBirthDate', 'Birth Date', 'trim|required|callback_validateBirthDate');
+            $this->form_validation->set_rules('regAge', 'Age', 'trim|required|less_than[100]|greater_than[18]');
 
             if($this->form_validation->run() == FALSE) {
                 $this->index();
@@ -35,5 +40,18 @@
             else {
                 redirect(base_url('register'));
             }
+        }
+
+        public function validateBirthDate($regBirthDate = "") {
+            if($regBirthDate) {
+                if (strtotime($regBirthDate) === FALSE) {
+                    echo '<script> console.log(`BDate: ' . json_encode($regBirthDate) . '`); </script>';
+                    $this->form_validation->set_message('validateBirthDate', 'The {field} field must be a valid date.');
+                    
+                    return FALSE;
+                }
+            }
+        
+            return TRUE;
         }
     }
