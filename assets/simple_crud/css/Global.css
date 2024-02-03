@@ -90,7 +90,7 @@ label::after {
 }
 
 /* Icons */
-i {
+.card-body i {
     width: 10px;
     display: flex !important;
     justify-content: center;
@@ -100,4 +100,20 @@ i {
 /* Invalid Feedback */
 .invalid-feedback p {
     font-size: 5px;
+}
+
+/* Green Toast [Success] */
+.greenToast {
+    border: 1px solid var(--bs-form-valid-border-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.greenToast .toast-body {
+    background-color: var(--bs-form-valid-border-color);
+    color: white;
+}
+
+.greenToast .toast-header {
+    border: unset;
 }
