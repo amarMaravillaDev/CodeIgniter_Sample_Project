@@ -12,12 +12,30 @@
             </div>
         </div>
 
+        <div class="toast-container position-fixed bottom-0 start-0 p-5">
+            <div id="liveToast" class="toast show greenToast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header p-3 d-flex justify-content-between align-items-center">
+                    <div class="text-success d-flex align-items-center justify-content-center gap-2">
+                        <i class="text-success fa-solid fa-circle"></i>
+                        SIMPLE CRUD
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body p-3">
+                    Hello, world! This is a toast message.
+                </div>
+            </div>
+        </div>
+
         <div class="p-5 w-100 h-100 d-flex flex-column align-items-center justify-content-center gap-4 bg-primary-subtle p-auto">
             <div class="container">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-9 col-md-10 col-sm-12">
                         <form action="<?= base_url('simple_crud/register'); ?>" id="registerForm" method="POST" novalidate>
-                            <div class="card shadow-lg border border-0 rounded-5 overflow-hidden">
+                        
+                        <input type="hidden" name="<?= $csrfTokenName; ?>" value="<?= $csrfHash; ?>" />
+                        
+                        <div class="card shadow-lg border border-0 rounded-5 overflow-hidden">
                                 <div class="card-header d-flex align-items-center gap-3 p-4">
                                     <i class="fs-3 text-primary fa-solid fa-circle"></i>
 
@@ -50,8 +68,8 @@
                                                             <span class="input-group-text px-4">
                                                                 <i class="fa-solid fa-user"></i>
                                                             </span>
-                                                            <div class="form-floating <?= $this->session->flashdata('register') ? (form_error('regMiddleName') ? "is-invalid" : "is-valid") : ""; ?>">
-                                                                <input value="<?= set_value('regMiddleName') ?>" type="text" class="form-control <?= $this->session->flashdata('register') ? (form_error('regMiddleName') ? "is-invalid" : "is-valid") : ""; ?>" id="regMiddleName" name="regMiddleName" placeholder="Middle Name (Optional)">
+                                                            <div class="form-floating <?= $this->session->flashdata('register') ? (form_error('regMiddleName') ? "is-invalid" : (($this->input->post('regMiddleName') || $this->input->post('regMiddleName') == "") ? "is-valid" : "")) : ""; ?>">
+                                                                <input value="<?= set_value('regMiddleName') ?>" type="text" class="form-control <?= $this->session->flashdata('register') ? (form_error('regMiddleName') ? "is-invalid" : (($this->input->post('regMiddleName') || $this->input->post('regMiddleName') == "") ? "is-valid" : "")) : ""; ?>" id="regMiddleName" name="regMiddleName" placeholder="Middle Name (Optional)">
                                                                 <label for="regMiddleName">Middle Name (Optional)</label>
                                                             </div>
                                                             <div class="invalid-feedback">
@@ -82,8 +100,8 @@
                                                             <span class="input-group-text px-4">
                                                                 <i class="fa-solid fa-user"></i>
                                                             </span>
-                                                            <div class="form-floating <?= $this->session->flashdata('register') ? (form_error('regSuffix') ? "is-invalid" : "is-valid") : ""; ?>">
-                                                                <input value="<?= set_value('regSuffix') ?>" type="text" class="form-control <?= $this->session->flashdata('register') ? (form_error('regSuffix') ? "is-invalid" : "is-valid") : ""; ?>" id="regSuffix" name="regSuffix" placeholder="Suffix (Optional)">
+                                                            <div class="form-floating <?= $this->session->flashdata('register') ? (form_error('regSuffix') ? "is-invalid" : (($this->input->post('regSuffix') || $this->input->post('regSuffix') == "") ? "is-valid" : "")) : ""; ?>">
+                                                                <input value="<?= set_value('regSuffix') ?>" type="text" class="form-control <?= $this->session->flashdata('register') ? (form_error('regSuffix') ? "is-invalid" : (($this->input->post('regSuffix') || $this->input->post('regSuffix') == "") ? "is-valid" : "")) : ""; ?>" id="regSuffix" name="regSuffix" placeholder="Suffix (Optional)">
                                                                 <label for="regSuffix">Suffix (Optional)</label>
                                                             </div>
                                                             <div class="invalid-feedback">
@@ -155,24 +173,23 @@
                                                             <span class="input-group-text px-4">
                                                                 <i class="fa-solid fa-user-clock"></i>
                                                             </span>
-                                                            <div class="form-floating <?= $this->session->flashdata('register') ? (form_error('regAge') ? "is-invalid" : (($this->input->post('regAge') || form_error('regAge') == "") ? "is-valid" : "")) : ""; ?>">
-                                                                <?php 
-                                                                    $today = new DateTime();
-                                                                    $birthDate = new DateTime(set_value('regBirthDate'));
-                                                                    $age = "";
 
-                                                                    // echo '<script> console.log(`Birth Date Object: `, ' . json_encode($birthDate) . '); </script>';
-                                                                    // echo '<script> console.log(`Today Object: `, ' . json_encode($today) . '); </script>';
-                                                                    // echo '<script> console.log(`Age Error Message: ' . form_error('regAge') . '`); </script>';
+                                                            <?php 
+                                                                $today = new DateTime();
+                                                                $birthDate = new DateTime(set_value('regBirthDate'));
+                                                                $age = "";
 
-                                                                    if($this->input->post('regBirthDate')) {
-                                                                        if(!form_error('regBirthDate')) {
-                                                                            $age = $today->diff($birthDate)->y;
-                                                                        }
-                                                                    }
-                                                                ?>    
+                                                                // echo '<script> console.log(`Birth Date Object: `, ' . json_encode($birthDate) . '); </script>';
+                                                                // echo '<script> console.log(`Today Object: `, ' . json_encode($today) . '); </script>';
+                                                                // echo '<script> console.log(`Age Error Message: ' . form_error('regAge') . '`); </script>';
 
-                                                                <input  value="<?= $age ?>" type="text" class="form-control <?= $this->session->flashdata('register') ? (form_error('regAge') ? "is-invalid" : (($this->input->post('regAge') || form_error('regAge') == "") ? "is-valid" : "")) : ""; ?>" id="regAge" name="regAge" placeholder="Age">
+                                                                if($this->input->post('regBirthDate')) {
+                                                                    $age = $today->diff($birthDate)->y;
+                                                                }
+                                                            ?>    
+
+                                                            <div class="form-floating <?= $this->session->flashdata('register') || $age ? (form_error('regAge') ? "is-invalid" : (($this->input->post('regAge') || $age) ? "is-valid" : "")) : ""; ?>">
+                                                                <input readonly value="<?= $age ?>" type="text" class="form-control <?= $this->session->flashdata('register') || $age ? (form_error('regAge') ? "is-invalid" : (($this->input->post('regAge') || $age) ? "is-valid" : "")) : ""; ?>" id="regAge" name="regAge" placeholder="Age">
                                                                 <label for="regAge">Age</label>
                                                             </div>
                                                             <div class="invalid-feedback">
@@ -225,7 +242,7 @@
                                                                 <i class="fa-solid fa-lock"></i>
                                                             </span>
                                                             <div class="form-floating <?= form_error('regPassword') ? "is-invalid" : (($this->input->post('regPassword')) ? "is-valid" : ""); ?>">
-                                                                <input type="password" class="form-control <?= form_error('regPassword') ? "is-invalid" : (($this->input->post('regPassword')) ? "is-valid" : ""); ?>" id="regPassword" name="regPassword" placeholder="Password">
+                                                                <input value="<?= set_value('regPassword') ?>" type="password" class="form-control <?= form_error('regPassword') ? "is-invalid" : (($this->input->post('regPassword')) ? "is-valid" : ""); ?>" id="regPassword" name="regPassword" placeholder="Password">
                                                                 <label for="regPassword">Password</label>
                                                             </div>
                                                             <span id="showPassword" class="input-group-text px-4 d-flex align-items-center justify-content-center">
@@ -242,7 +259,7 @@
                                                                 <i class="fa-solid fa-lock"></i>
                                                             </span>
                                                             <div class="form-floating <?= form_error('regConfirmPassword') ? "is-invalid" : (($this->input->post('regConfirmPassword')) ? "is-valid" : ""); ?>">
-                                                                <input type="password" class="form-control <?= form_error('regConfirmPassword') ? "is-invalid" : (($this->input->post('regConfirmPassword')) ? "is-valid" : ""); ?>" id="regConfirmPassword" name="regConfirmPassword" placeholder="Confirm Password">
+                                                                <input value="<?= set_value('regConfirmPassword') ?>" type="password" class="form-control <?= form_error('regConfirmPassword') ? "is-invalid" : (($this->input->post('regConfirmPassword')) ? "is-valid" : ""); ?>" id="regConfirmPassword" name="regConfirmPassword" placeholder="Confirm Password">
                                                                 <label for="regConfirmPassword">Confirm Password</label>
                                                             </div>
                                                             <span id="showPassword" class="input-group-text px-4 d-flex align-items-center justify-content-center">
