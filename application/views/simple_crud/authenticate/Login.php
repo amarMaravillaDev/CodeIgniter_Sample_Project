@@ -56,7 +56,7 @@
                                         <a href="<?= base_url('simple_crud/register') ?>" id="registerLink" class="primary text-decoration-none">Register Here.</a>
                                     </div>
 
-                                    <button type="submit" class="rounded-5 btn btn-primary focus-ring focus-ring-primary px-5 py-3" name="loginBtn">
+                                    <button type="submit" class="rounded-4 btn btn-primary focus-ring focus-ring-primary px-5 py-3" name="loginBtn">
                                         LOG IN
                                     </button>
                                 </div>
