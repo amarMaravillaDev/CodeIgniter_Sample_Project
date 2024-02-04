@@ -102,18 +102,56 @@ label::after {
     font-size: 5px;
 }
 
+/* Toast */
+.toast {
+    border-radius: 10px;
+    overflow: hidden;
+    animation: show .5s ease-in-out 0s forwards, hide .5s ease-in-out 5s forwards;
+}
+
+.toast-header {
+    border: unset;
+}
+
 /* Green Toast [Success] */
 .greenToast {
     border: 1px solid var(--bs-form-valid-border-color);
-    border-radius: 10px;
-    overflow: hidden;
 }
 
 .greenToast .toast-body {
     background-color: var(--bs-form-valid-border-color);
-    color: white;
+    color: #ffffff;
 }
 
-.greenToast .toast-header {
-    border: unset;
+/* Red Toast [Danger] */
+.redToast {
+    border: 1px solid var(--bs-form-invalid-border-color);
+}
+
+.redToast .toast-body {
+    background-color: var(--bs-form-invalid-border-color);
+    color: #ffffff;
+}
+
+/* KeyFrames Animations */
+/* Show */
+@keyframes show {
+    0% {
+        display: block;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Hide */
+@keyframes hide {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        display: none;
+        opacity: 0;
+    }
 }
