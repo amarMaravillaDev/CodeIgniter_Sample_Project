@@ -12,20 +12,39 @@
             </div>
         </div>
 
-        <div class="toast-container position-fixed bottom-0 start-0 p-5">
-            <div id="liveToast" class="toast show greenToast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header p-3 d-flex justify-content-between align-items-center">
-                    <div class="text-success d-flex align-items-center justify-content-center gap-2">
-                        <i class="text-success fa-solid fa-circle"></i>
-                        SIMPLE CRUD
+        <?php if($this->session->flashdata('registerFailed')) { ?>
+            <div class="toast-container position-fixed bottom-0 start-0 p-5">
+                <div id="liveToast" class="toast show redToast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header p-3 d-flex justify-content-between align-items-center">
+                        <div class="text-success d-flex align-items-center justify-content-center gap-2">
+                            <i class="text-success fa-solid fa-circle"></i>
+                            SIMPLE CRUD
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body p-3">
-                    Hello, world! This is a toast message.
+                    <div class="toast-body p-3">
+                        <?= $this->session->flashdata('registerFailed') ?>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php } ?>
+
+        <?php if($this->session->flashdata('registerSuccess')) { ?>
+            <div class="toast-container position-fixed bottom-0 start-0 p-5">
+                <div id="liveToast" class="toast show greenToast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header p-3 d-flex justify-content-between align-items-center">
+                        <div class="text-success d-flex align-items-center justify-content-center gap-2">
+                            <i class="text-success fa-solid fa-circle"></i>
+                            SIMPLE CRUD
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body p-3">
+                        <?= $this->session->flashdata('registerSuccess') ?>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
 
         <div class="p-5 w-100 h-100 d-flex flex-column align-items-center justify-content-center gap-4 bg-primary-subtle p-auto">
             <div class="container">
@@ -33,7 +52,7 @@
                     <div class="col-lg-9 col-md-10 col-sm-12">
                         <form action="<?= base_url('simple_crud/register'); ?>" id="registerForm" method="POST" novalidate>
                         
-                        <input type="hidden" name="<?= $csrfTokenName; ?>" value="<?= $csrfHash; ?>" />
+                        <!-- <input type="hidden" name="<?= $csrfTokenName; ?>" value="<?= $csrfHash; ?>" /> -->
                         
                         <div class="card shadow-lg border border-0 rounded-5 overflow-hidden">
                                 <div class="card-header d-flex align-items-center gap-3 p-4">
@@ -276,7 +295,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-end p-4">
-                                    <button type="submit" class="rounded-5 btn btn-primary focus-ring focus-ring-primary px-5 py-3" name="registerBtn">
+                                    <button type="submit" class="rounded-4 btn btn-primary focus-ring focus-ring-primary px-5 py-3" name="registerBtn">
                                         REGISTER
                                     </button>
                                 </div>
