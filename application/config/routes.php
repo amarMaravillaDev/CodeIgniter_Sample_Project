@@ -49,3 +49,6 @@
     // Register Controller Routes
     $route['simple_crud/register']['GET'] = 'simple_crud/authenticate/Register';
     $route['simple_crud/register']['POST'] = 'simple_crud/authenticate/Register/register';
+
+    // Users Controller Routes
+    $route['simple_crud/users']['GET'] = 'simple_crud/users/Users';
