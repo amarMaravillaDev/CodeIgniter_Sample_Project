@@ -16,19 +16,40 @@
         }
 
         public function index() {
+            // Parameters
+            $viewsData = array(
+                "document" => array(
+                    "title" => "| Register",
+                    "css"=> "Register",
+                    "script"=> "Register"
+                )
+            );
+
             // Views
-            $this->load->view('simple_crud/components/Header');
-            $this->load->view('simple_crud/authenticate/Register');
-            $this->load->view('simple_crud/components/Footer');
+            $this->load->view('simple_crud/components/Header', $viewsData);
+            $this->load->view('simple_crud/authenticate/Register', $viewsData);
+            $this->load->view('simple_crud/components/Footer', $viewsData);
         }
 
         public function register() {
+            // CSRF Validation
+            // if (!$this->security->csrf_verify()) {
+            //     $this->session->set_flashdata('registerToast', array('toastStatus' => 'danger', 'toastMessage' => 'Invalid CSRF Token.'));
+            // }
+
+            echo '<script> console.log(`Token: `, ' . json_encode($this->input->post()) . '); </script>';
+
             // Costume Error Message
             $costumeErrorMessage = array(
-                "is_unique" => "The {field} \"" . $this->input->post('regEmailAddress') . "\" is already exists."
+                "emailAddress" => array(
+                    "is_unique" => "The {field} \"" . $this->input->post('regEmailAddress') . "\" is already exists."
+                ),
+                "contactNumber" => array(
+                    "is_unique" => "The {field} \"" . $this->input->post('regContactNumber') . "\" is already exists."
+                )
             );
 
-            // Form Validations |callback_validateAge
+            // Form Validations 
             $this->form_validation->set_rules('regFirstName', 'First Name', 'trim|required|alpha|min_length[2]|max_length[30]');
             $this->form_validation->set_rules('regMiddleName', 'Middle Name', 'trim|alpha|min_length[2]|max_length[30]');
             $this->form_validation->set_rules('regLastName', 'Last Name', 'trim|required|alpha|min_length[2]|max_length[30]');
@@ -36,8 +57,8 @@
             $this->form_validation->set_rules('regGender', 'Gender', 'trim|required');
             $this->form_validation->set_rules('regBirthDate', 'Birth Date', 'trim|required|callback_validateBirthDate');
             $this->form_validation->set_rules('regAge', 'Age', 'trim|callback_validateAge');
-            $this->form_validation->set_rules('regContactNumber', 'Contact Number', 'trim|required|callback_validateContactNumber');
-            $this->form_validation->set_rules('regEmailAddress', 'Email Address', 'trim|required|valid_email|is_unique[SIMPLE_CRUD_USERS.EMAIL_ADDRESS]', $costumeErrorMessage);
+            $this->form_validation->set_rules('regContactNumber', 'Contact Number', 'trim|required|callback_validateContactNumber|is_unique[SIMPLE_CRUD_USERS.CONTACT_NUMBER]', $costumeErrorMessage['contactNumber']);
+            $this->form_validation->set_rules('regEmailAddress', 'Email Address', 'trim|required|valid_email|is_unique[SIMPLE_CRUD_USERS.EMAIL_ADDRESS]', $costumeErrorMessage['emailAddress']);
             $this->form_validation->set_rules('regPassword', 'Password', 'trim|required|min_length[8]|max_length[30]|callback_validatePassword');
             $this->form_validation->set_rules('regConfirmPassword', 'Confirm Password', 'trim|required|matches[regPassword]');
 
@@ -47,6 +68,16 @@
                 $this->index();
             }
             else {
+                // Age Compute
+                $today = new DateTime();
+                $birthDate = new DateTime($this->input->post('regBirthDate'));
+                $age = "";
+
+                $age = $today->diff($birthDate)->y;
+
+                // Password Hash
+                $hashPassword = password_hash($this->input->post('regPassword'), PASSWORD_DEFAULT);
+
                 $usersData = array(
                     'FIRST_NAME' => $this->input->post('regFirstName'),
                     'MIDDLE_NAME' => $this->input->post('regMiddleName'),
@@ -54,22 +85,22 @@
                     'SUFFIX' => $this->input->post('regSuffix'),
                     'GENDER' => $this->input->post('regGender'),
                     'BIRTH_DATE' => $this->input->post('regBirthDate'),
-                    'AGE' => $this->input->post('regAge'),
+                    'AGE' => ($this->input->post('regAge') ? $this->input->post('regAge') : $age),
                     'CONTACT_NUMBER' => $this->input->post('regContactNumber'),
                     'EMAIL_ADDRESS' => $this->input->post('regEmailAddress'),
-                    'PASSWORD' => $this->input->post('regPassword')
+                    'PASSWORD' => $hashPassword
                 );
 
                 $registerUser = new UsersModel;
-                $register = $registerUser->register($usersData);
+                $response = $registerUser->register($usersData);
 
-                if($register) {
-                    $this->session->set_flashdata('registerSuccess','User Registered Successfully.');
+                if($response) {
+                    $this->session->set_flashdata('registerToast', array('toastStatus' => 'success', 'toastMessage' => 'User Registered Successfully.'));
 
                     redirect(base_url('simple_crud/register'));
                 }
                 else {
-                    $this->session->set_flashdata('registerFailed','User Registration Failed, Something Went Wrong.');
+                    $this->session->set_flashdata('registerToast', array('toastStatus' => 'danger', 'toastMessage' => 'User Registration Failed, Something Went Wrong.'));
 
                     redirect(base_url('simple_crud/register'));
                 }
