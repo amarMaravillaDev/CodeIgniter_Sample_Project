@@ -9,7 +9,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>SIMPLE CRUD</title>
+        <title>SIMPLE CRUD <?= $document['title'] ?></title>
 
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -22,6 +22,10 @@
 
         <!-- Local CSS -->
         <link rel="stylesheet" href="../assets/simple_crud/css/Global.css">
+
+        <?php if($document['css']) { ?>
+            <link rel="stylesheet" href="../assets/simple_crud/css/<?= $document['css'] ?>.css">
+        <?php } ?>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
