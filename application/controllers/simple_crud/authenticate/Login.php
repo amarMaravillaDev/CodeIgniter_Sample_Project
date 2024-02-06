@@ -62,8 +62,14 @@
                     if (password_verify($this->input->post('loginPassword'), $response->PASSWORD)) {
                         $usersDetails = array(
                             "FIRST_NAME" => $response->FIRST_NAME,
+                            "MIDDLE_NAME" => $response->MIDDLE_NAME,
                             "LAST_NAME" => $response->LAST_NAME,  
-                            "EMAIL_ADDRESS" => $response->EMAIL_ADDRESS
+                            "GENDER" => $response->GENDER,
+                            "BIRTH_DATE" => $response->BIRTH_DATE,
+                            "AGE" => $response->AGE,
+                            "CONTACT_NUMBER" => $response->CONTACT_NUMBER,
+                            "EMAIL_ADDRESS" => $response->EMAIL_ADDRESS,
+                            "PASSWORD" => $response->PASSWORD
                         );
     
                         $this->session->set_userdata('userType', $response->USER_TYPE);
