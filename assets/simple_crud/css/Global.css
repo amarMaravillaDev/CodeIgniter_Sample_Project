@@ -103,34 +103,43 @@ label::after {
 }
 
 /* Toast */
+.Toast .toast-body {
+    background-color: var(--bs-card-cap-bg);
+}
+
 .toast {
     border-radius: 10px;
     overflow: hidden;
-    animation: show .5s ease-in-out 0s forwards, hide .5s ease-in-out 5s forwards;
 }
 
 .toast-header {
     border: unset;
 }
 
-/* Green Toast [Success] */
-.greenToast {
+/* Success Toast */
+.successToast {
     border: 1px solid var(--bs-form-valid-border-color);
 }
 
-.greenToast .toast-body {
+.successToast .toast-body {
     background-color: var(--bs-form-valid-border-color);
     color: #ffffff;
 }
 
-/* Red Toast [Danger] */
-.redToast {
+/* Danger Toast */
+.dangerToast {
     border: 1px solid var(--bs-form-invalid-border-color);
 }
 
-.redToast .toast-body {
+.dangerToast .toast-body {
     background-color: var(--bs-form-invalid-border-color);
     color: #ffffff;
+}
+
+/* Show and Hide Animation */
+
+.showHide {
+    animation: show .5s ease-in-out 0s forwards, hide .5s ease-in-out 5s forwards;
 }
 
 /* KeyFrames Animations */
