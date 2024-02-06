@@ -12,35 +12,22 @@
             </div>
         </div>
 
-        <?php if($this->session->flashdata('registerFailed')) { ?>
-            <div class="toast-container position-fixed bottom-0 start-0 p-5">
-                <div id="liveToast" class="toast show redToast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header p-3 d-flex justify-content-between align-items-center">
-                        <div class="text-success d-flex align-items-center justify-content-center gap-2">
-                            <i class="text-success fa-solid fa-circle"></i>
-                            SIMPLE CRUD
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body p-3">
-                        <?= $this->session->flashdata('registerFailed') ?>
-                    </div>
-                </div>
-            </div>
-        <?php } ?>
+        <?php if($this->session->flashdata('registerToast')) { 
+            $registerToast = json_decode(json_encode($this->session->flashdata('registerToast')));
 
-        <?php if($this->session->flashdata('registerSuccess')) { ?>
-            <div class="toast-container position-fixed bottom-0 start-0 p-5">
-                <div id="liveToast" class="toast show greenToast" role="alert" aria-live="assertive" aria-atomic="true">
+            // echo '<script> console.log(`Toast: `, ' . json_encode($registerToast->toastStatus) . '); </script>';
+        ?>
+            <div class="toast-container position-fixed top-0 end-0 p-5">
+                <div id="liveToast" class="toast show showHide <?= $registerToast->toastStatus ?>Toast" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="toast-header p-3 d-flex justify-content-between align-items-center">
-                        <div class="text-success d-flex align-items-center justify-content-center gap-2">
-                            <i class="text-success fa-solid fa-circle"></i>
+                        <div class="text-<?= $registerToast->toastStatus ?> d-flex align-items-center justify-content-center gap-2">
+                            <i class="text-<?= $registerToast->toastStatus ?> fa-solid fa-circle"></i>
                             SIMPLE CRUD
                         </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        <button type="button" class="btn-close m-0" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                     <div class="toast-body p-3">
-                        <?= $this->session->flashdata('registerSuccess') ?>
+                        <?= $registerToast->toastMessage ?>
                     </div>
                 </div>
             </div>
@@ -52,7 +39,11 @@
                     <div class="col-lg-9 col-md-10 col-sm-12">
                         <form action="<?= base_url('simple_crud/register'); ?>" id="registerForm" method="POST" novalidate>
                         
-                        <!-- <input type="hidden" name="<?= $csrfTokenName; ?>" value="<?= $csrfHash; ?>" /> -->
+                        <?php 
+                            // echo '<script> console.log(`Token: ' . $this->security->get_csrf_hash() . '`); </script>';
+                        ?>
+
+                        <!-- <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>"> -->
                         
                         <div class="card shadow-lg border border-0 rounded-5 overflow-hidden">
                                 <div class="card-header d-flex align-items-center gap-3 p-4">
