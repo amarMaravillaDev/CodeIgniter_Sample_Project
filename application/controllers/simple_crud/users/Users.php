@@ -4,15 +4,17 @@
     class Users extends CI_Controller {
         public function __construct() {
             parent::__construct();
+
+            // $this->load->model('AuthenticationModel', 'Authenticate');
         }
 
         public function index() {
             // Parameters
             $viewsData = array(
                 "document" => array(
-                    "title" => "| Register",
-                    "css"=> "Register",
-                    "script"=> "Register"
+                    "title" => "| ",
+                    "css"=> "Users",
+                    "script"=> "Users"
                 )
             );
 
