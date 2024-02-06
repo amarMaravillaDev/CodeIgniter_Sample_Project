@@ -10,6 +10,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Local JS -->
-    <script src="../assets/simple_crud/js/Login.js"></script>
+    <script src="../assets/simple_crud/js/Global.js"></script>
+
+    <?php if($document['script']) { ?>
+        <script src="../assets/simple_crud/js/<?= $document['script'] ?>.js"></script>
+    <?php } ?>
 </body>
 </html>
