@@ -8,7 +8,7 @@
 
             // Check the Session
             if($this->session->has_userdata('userType')) {
-                $this->session->set_flashdata('registerAccess', 'You are Already Logged In.');
+                $this->session->set_flashdata('usersToast', array('toastStatus' => 'danger', 'toastMessage' => 'You are Already Logged In.'));
 
                 redirect(base_url('simple_crud/users'));
             }
@@ -75,7 +75,7 @@
                         $this->session->set_userdata('userType', $response->USER_TYPE);
                         $this->session->set_userdata('usersDetails', $usersDetails);
     
-                        $this->session->set_flashdata('loginToast', array('toastStatus' => 'success', 'toastMessage' => 'You are Logged In Successfully.'));
+                        $this->session->set_flashdata('usersToast', array('toastStatus' => 'success', 'toastMessage' => 'You are Logged In Successfully.'));
     
                         redirect(base_url('simple_crud/users'));
                     } 
