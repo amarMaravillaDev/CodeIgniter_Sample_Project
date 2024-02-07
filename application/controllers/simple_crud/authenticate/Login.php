@@ -8,7 +8,7 @@
 
             // Check the Session
             if($this->session->has_userdata('userType')) {
-                $this->session->set_flashdata('usersToast', array('toastStatus' => 'danger', 'toastMessage' => 'You are Already Logged In.'));
+                $this->session->set_flashdata('usersToast', array('toastStatus' => 'primary', 'toastMessage' => 'You are Already Logged In.'));
 
                 redirect(base_url('simple_crud/users'));
             }
@@ -40,12 +40,12 @@
         }
 
         public function login() {
-            $this->session->set_flashdata('login', 'login');
-            
             $this->form_validation->set_rules('loginEmailAddress', 'Email Address', 'trim|required|valid_email');
             $this->form_validation->set_rules('loginPassword', 'Password', 'trim|required');
 
             if($this->form_validation->run() == FALSE) {
+                $this->session->set_flashdata('login', 'login');
+            
                 $this->index();
             }
             else {
