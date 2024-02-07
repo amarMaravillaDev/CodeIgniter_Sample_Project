@@ -21,7 +21,13 @@
                 <?php } ?>
 
                 <div class="card shadow-sm">
+                    <!-- <?php 
+                        $attributes = array("role" => "form");
+                        echo form_open('', $attributes);
+                    ?> -->
                     <form action="<?= base_url('register') ?>" method="POST">
+                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                         <div class="card-header">
                             <h5 class="my-2">Registration Form</h5>
                         </div>
