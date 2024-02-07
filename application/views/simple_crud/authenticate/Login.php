@@ -11,15 +11,15 @@
             // echo '<script> console.log(`Toast: `, ' . json_encode($loginToast->toastStatus) . '); </script>';
         ?>
             <div class="toast-container position-fixed top-0 end-0 p-5">
-                <div id="liveToast" class="toast show showHide <?= $loginToast->toastStatus ?>Toast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header p-3 d-flex justify-content-between align-items-center">
+                <div id="liveToast" class="toast showHide show overflow-hidden rounded-4 border-<?= $loginToast->toastStatus ?>" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header border-<?= $loginToast->toastStatus ?> p-3 d-flex justify-content-between align-items-center">
                         <div class="text-<?= $loginToast->toastStatus ?> d-flex align-items-center justify-content-center gap-2">
                             <i class="text-<?= $loginToast->toastStatus ?> fa-solid fa-circle"></i>
                             SIMPLE CRUD
                         </div>
                         <button type="button" class="btn-close m-0" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body p-3">
+                    <div class="toast-body bg-<?= $loginToast->toastStatus ?> <?= ($loginToast->toastStatus) ? "text-light" : ""; ?> p-3">
                         <?= $loginToast->toastMessage ?>
                     </div>
                 </div>
@@ -30,7 +30,9 @@
             <div class="container">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-5 col-md-7 col-sm-9">
-                        <form action="<?= base_url('simple_crud/login') ?>" id="loginForm" method="POST">
+                        <form action="<?= base_url('simple_crud/login') ?>" id="loginForm" method="POST" novalidate>
+                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                             <div class="card shadow-lg border border-0 rounded-5 overflow-hidden">
                                 <div class="card-header d-flex align-items-center gap-3 p-4">
                                     <i class="fs-3 text-primary fa-solid fa-circle"></i>
