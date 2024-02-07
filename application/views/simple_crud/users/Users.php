@@ -11,15 +11,15 @@
             // echo '<script> console.log(`Toast: `, ' . json_encode($usersToast->toastStatus) . '); </script>';
         ?>
             <div class="toast-container position-fixed top-0 end-0 p-5">
-                <div id="liveToast" class="toast show showHide <?= $usersToast->toastStatus ?>Toast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header p-3 d-flex justify-content-between align-items-center">
+                <div id="liveToast" class="toast showHide show overflow-hidden rounded-4 border-<?= $usersToast->toastStatus ?>" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header border-<?= $usersToast->toastStatus ?> p-3 d-flex justify-content-between align-items-center">
                         <div class="text-<?= $usersToast->toastStatus ?> d-flex align-items-center justify-content-center gap-2">
                             <i class="text-<?= $usersToast->toastStatus ?> fa-solid fa-circle"></i>
                             SIMPLE CRUD
                         </div>
                         <button type="button" class="btn-close m-0" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body p-3">
+                    <div class="toast-body bg-<?= $usersToast->toastStatus ?> <?= ($usersToast->toastStatus) ? "text-light" : ""; ?> p-3">
                         <?= $usersToast->toastMessage ?>
                     </div>
                 </div>
