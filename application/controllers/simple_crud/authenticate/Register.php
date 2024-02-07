@@ -32,13 +32,6 @@
         }
 
         public function register() {
-            // CSRF Validation
-            // if (!$this->security->csrf_verify()) {
-            //     $this->session->set_flashdata('registerToast', array('toastStatus' => 'danger', 'toastMessage' => 'Invalid CSRF Token.'));
-            // }
-
-            echo '<script> console.log(`Token: `, ' . json_encode($this->input->post()) . '); </script>';
-
             // Costume Error Message
             $costumeErrorMessage = array(
                 "emailAddress" => array(
