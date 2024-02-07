@@ -18,15 +18,15 @@
             // echo '<script> console.log(`Toast: `, ' . json_encode($registerToast->toastStatus) . '); </script>';
         ?>
             <div class="toast-container position-fixed top-0 end-0 p-5">
-                <div id="liveToast" class="toast show showHide <?= $registerToast->toastStatus ?>Toast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header p-3 d-flex justify-content-between align-items-center">
+                <div id="liveToast" class="toast show showHide overflow-hidden rounded-4 border-<?= $registerToast->toastStatus ?>" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header border-<?= $registerToast->toastStatus ?> p-3 d-flex justify-content-between align-items-center">
                         <div class="text-<?= $registerToast->toastStatus ?> d-flex align-items-center justify-content-center gap-2">
                             <i class="text-<?= $registerToast->toastStatus ?> fa-solid fa-circle"></i>
                             SIMPLE CRUD
                         </div>
                         <button type="button" class="btn-close m-0" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body p-3">
+                    <div class="toast-body bg-<?= $registerToast->toastStatus ?> <?= ($registerToast->toastStatus) ? "text-light" : ""; ?> p-3">
                         <?= $registerToast->toastMessage ?>
                     </div>
                 </div>
@@ -38,14 +38,9 @@
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-9 col-md-10 col-sm-12">
                         <form action="<?= base_url('simple_crud/register'); ?>" id="registerForm" method="POST" novalidate>
-                        
-                        <?php 
-                            // echo '<script> console.log(`Token: ' . $this->security->get_csrf_hash() . '`); </script>';
-                        ?>
+                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 
-                        <!-- <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>"> -->
-                        
-                        <div class="card shadow-lg border border-0 rounded-5 overflow-hidden">
+                            <div class="card shadow-lg border border-0 rounded-5 overflow-hidden">
                                 <div class="card-header d-flex align-items-center gap-3 p-4">
                                     <i class="fs-3 text-primary fa-solid fa-circle"></i>
 
