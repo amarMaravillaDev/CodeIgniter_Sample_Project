@@ -19,17 +19,17 @@
             <div class="position-relative shadow bg-light borderRadiusFull d-flex align-items-center justify-content-center p-4">
                 <i class="fs-5 fa-solid fa-user text-primary d-flex align-items-center justify-content-center"></i>
 
-                <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="border-0 bg-primary shadow position-absolute end-0 bottom-0 p-1 borderRadiusFull">
+                <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="focus-ring focus-ring-primary border-1 border border-light bg-primary position-absolute end-0 bottom-0 p-1 borderRadiusFull">
                     <div class="d-flex align-items-center justify-content-center squareXSm">
                         <i class="fa-solid fa-caret-down d-flex align-items-center justify-content-center text-light"></i>
                     </div>
                 </button>
 
-                <ul class="dropdown-menu dropDownLogout">
-                    <li class="">
-                        <a class="dropdown-item d-flex align-items-center justify-content-center gap-3" href="<?= base_url('simple_crud/logout') ?>">
+                <ul class="dropdown-menu dropDownLogout p-1 border-0 shadow rounded-3">
+                    <li class="dropdown-item p-0 rounded">
+                        <a class="focus-ring focus-ring-primary rounded-1 px-5 py-3 btn btn-outline-primary border-0 border d-flex align-items-center justify-content-center gap-3" href="<?= base_url('simple_crud/logout') ?>">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                            Log Out
+                            LOGOUT
                         </a>
                     </li>
                 </ul>
