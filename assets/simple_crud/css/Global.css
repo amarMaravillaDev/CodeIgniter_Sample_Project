@@ -7,9 +7,9 @@
     font-size: 12px;
 }
 
-* {
+/* * {
     transition: .15s ease-in-out !important;
-}
+} */
 
 *::-moz-selection {
     --bs-bg-opacity: 1;
@@ -66,6 +66,11 @@ html, body {
 /* Label */
 label::after {
     background-color: transparent !important;
+}
+
+/* Anchor Tags */
+a {
+    text-decoration: unset;
 }
 
 /* Show Password */
@@ -143,8 +148,10 @@ label::after {
     0% {
         opacity: 1;
     }
+    99% {
+        opacity: 0;
+    }
     100% {
         display: none;
-        opacity: 0;
     }
 }
