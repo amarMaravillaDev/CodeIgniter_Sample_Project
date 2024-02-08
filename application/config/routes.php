@@ -46,6 +46,9 @@
     $route['simple_crud/login']['GET'] = 'simple_crud/authenticate/Login';
     $route['simple_crud/login']['POST'] = 'simple_crud/authenticate/Login/login';
 
+    // Logout Controller Routes
+    $route['simple_crud/logout']['GET'] = 'simple_crud/authenticate/Logout/logout';
+
     // Register Controller Routes
     $route['simple_crud/register']['GET'] = 'simple_crud/authenticate/Register';
     $route['simple_crud/register']['POST'] = 'simple_crud/authenticate/Register/register';
