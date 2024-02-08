@@ -12,7 +12,7 @@
             $this->load->library('form_validation');
 
             // Models
-            $this->load->model('simple_crud/UsersModel', 'Users');
+            $this->load->model('simple_crud/Users', 'Users');
         }
 
         public function index() {
@@ -78,24 +78,24 @@
                     'SUFFIX' => $this->input->post('regSuffix'),
                     'GENDER' => $this->input->post('regGender'),
                     'BIRTH_DATE' => $this->input->post('regBirthDate'),
-                    'AGE' => ($this->input->post('regAge') ? $this->input->post('regAge') : $age),
+                    'AGE' =>  $age,
                     'CONTACT_NUMBER' => $this->input->post('regContactNumber'),
                     'EMAIL_ADDRESS' => $this->input->post('regEmailAddress'),
                     'PASSWORD' => $hashPassword
                 );
 
-                $registerUser = new UsersModel;
+                $registerUser = new Users;
                 $response = $registerUser->register($usersData);
 
                 if($response) {
                     $this->session->set_flashdata('registerToast', array('toastStatus' => 'success', 'toastMessage' => 'User Registered Successfully.'));
 
-                    redirect(base_url('simple_crud/register'));
+                    $this->index();
                 }
                 else {
                     $this->session->set_flashdata('registerToast', array('toastStatus' => 'danger', 'toastMessage' => 'User Registration Failed, Something Went Wrong.'));
 
-                    redirect(base_url('simple_crud/register'));
+                    $this->index();
                 }
             }
         }
@@ -114,16 +114,16 @@
             return TRUE;
         }
 
-        public function validateAge($regAge) {
-            $today = new DateTime();
-            $birthDate = new DateTime($this->input->post('regBirthDate'));
-            $age = "";
-
-            $age = $today->diff($birthDate)->y;
-
-            // echo '<script> console.log(`Age: ' . json_encode($age) . '`); </script>';
-
+        public function validateAge() {
             if($this->input->post('regBirthDate')) {
+                $today = new DateTime();
+                $birthDate = new DateTime($this->input->post('regBirthDate'));
+                $age = "";
+
+                $age = $today->diff($birthDate)->y;
+
+                echo '<script> console.log(`Age: ' . json_encode($age) . '`); </script>';
+
                 if($age < 18) {
                     $this->form_validation->set_message('validateAge', 'The {field} must contain a number greater than 18.');
     
@@ -143,11 +143,9 @@
 
                 return FALSE;
             }
-            
-            return TRUE;
         }
 
-        public function validateContactNumber($regContactNumber) {
+        public function validateContactNumber($regContactNumber = "") {
             if($regContactNumber) {
                 if(preg_match('/^(\+63|\(?\+63\)?)([2-9]\d{2})\s?\d{7}$/', $regContactNumber)) {
                     return TRUE;
@@ -162,7 +160,7 @@
             return TRUE;
         }
 
-        public function validatePassword($regPassword) {
+        public function validatePassword($regPassword = "") {
             if($regPassword) {
                 if(!preg_match('/^(?=.*[a-z]).*$/', $regPassword)) {
                     $this->form_validation->set_message('validatePassword', 'The {field} field must contain atleast 1 lower case letter.');
