@@ -20,7 +20,7 @@
             $this->load->library('form_validation');
 
             // Models
-            $this->load->model('simple_crud/UsersModel', 'Users');
+            $this->load->model('simple_crud/Users', 'Users');
         }
 
         public function index() {
@@ -54,7 +54,7 @@
                     'PASSWORD' => $this->input->post('loginPassword')
                 );
 
-                $loginUser = new UsersModel;
+                $loginUser = new Users;
 
                 $response = $loginUser->login($usersData);
 
