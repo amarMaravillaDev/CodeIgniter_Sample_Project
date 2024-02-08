@@ -5,7 +5,9 @@
         public function __construct() {
             parent::__construct();
 
-            // $this->load->model('AuthenticationModel', 'Authenticate');
+            $this->load->model('simple_crud/Authentication', 'Authenticate');
+
+            $this->Authenticate->users();
         }
 
         public function index() {
