@@ -126,7 +126,7 @@
                                                     </span>
                                                     <div class="form-floating <?= form_error('regGender') ? "is-invalid" : (($this->input->post('regGender')) ? "is-valid" : ""); ?>">
                                                         <select id="regGender" name="regGender" class="form-select <?= form_error('regGender') ? "is-invalid" : (($this->input->post('regGender')) ? "is-valid" : ""); ?>">
-                                                            <?php 
+                                                            <!-- <?php 
                                                                 $genders = ['Gender' => '', 'Male' => '', 'Female' => '']; 
 
                                                                 foreach ($genders as $gender => $genderValue) {
@@ -141,11 +141,11 @@
                                                                     }
                                                                 }
                                                                 // echo '<script> console.log(`All: ' . json_encode($genders) . '`); </script>';
-                                                            ?>
+                                                            ?> -->
                                                         
-                                                            <option <?= $genders['Gender'] ?> disabled value="">Select Your Gender</option>
-                                                            <option <?= $genders['Male'] ?> value="Male">Male</option>
-                                                            <option <?= $genders['Female'] ?> value="Female">Female</option>
+                                                            <option <?= set_select('regGender', "") ?> value="">Select Your Gender</option>
+                                                            <option <?= set_select('regGender', "Male") ?> value="Male">Male</option>
+                                                            <option <?= set_select('regGender', "Female") ?> value="Female">Female</option>
                                                         </select>
                                                         <label for="regGender">Gender</label>
                                                     </div>
