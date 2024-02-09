@@ -5,20 +5,26 @@
         public function __construct() {
             parent::__construct();
 
-            $this->load->model('simple_crud/Authentication', 'Authenticate');
+            $this->load->model('simple_crud/AuthenticationModel', 'Authenticate');
+            $this->load->model('simple_crud/UsersModel', 'Users');
 
             $this->Authenticate->users();
         }
 
         public function index() {
+            $usersList = $this->Users->usersList();
+
             // Parameters
             $viewsData = array(
                 "document" => array(
                     "title" => "| ",
                     "css"=> "Users",
                     "script"=> "Users"
-                )
+                ),
+                "usersList" => $usersList
             );
+
+            // echo '<script> console.log(`Views Data: `, ' . json_encode($viewsData) . '); </script>';
 
             // Views
             $this->load->view('simple_crud/components/Header', $viewsData);
