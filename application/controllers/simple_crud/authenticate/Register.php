@@ -12,7 +12,7 @@
             $this->load->library('form_validation');
 
             // Models
-            $this->load->model('simple_crud/Users', 'Users');
+            $this->load->model('simple_crud/UsersModel', 'Users');
         }
 
         public function index() {
@@ -84,13 +84,13 @@
                     'PASSWORD' => $hashPassword
                 );
 
-                $registerUser = new Users;
+                $registerUser = new UsersModel;
                 $response = $registerUser->register($usersData);
 
                 if($response) {
                     $this->session->set_flashdata('registerToast', array('toastStatus' => 'success', 'toastMessage' => 'User Registered Successfully.'));
 
-                    $this->index();
+                    redirect(base_url('simple_crud/register'));
                 }
                 else {
                     $this->session->set_flashdata('registerToast', array('toastStatus' => 'danger', 'toastMessage' => 'User Registration Failed, Something Went Wrong.'));
