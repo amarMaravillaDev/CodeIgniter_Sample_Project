@@ -2,8 +2,8 @@
     defined('BASEPATH') OR exit('No direct script access allowed'); 
 ?>
 
-<div class="d-flex flex-wrap w-100 h-100">
-    <div class="w-100 d-flex align-items-center position-relative">
+<div class="d-flex flex-column w-100 h-100">
+    <div class="w-100 h-100 d-flex overflow-auto position-relative">
 
         <?php if($this->session->flashdata('usersToast')) { 
             $usersToast = json_decode(json_encode($this->session->flashdata('usersToast')));
@@ -31,27 +31,21 @@
 
                 <?php $this->load->view('simple_crud/components/NavBar'); ?>
 
-                <div class="w-100 h-100 d-flex">
+                <div class="w-100 h-100 d-flex overflow-auto position-relative">
 
                     <?php $this->load->view('simple_crud/components/SideBar'); ?>
 
-                    <main class="w-100 h-100 d-flex p-5">
-                        <div class="container p-0">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col">
-                                    <div class="card shadow-sm">
-                                        <div class="card-header">
-                                            <h5 class="my-2">User's Page</h5>
-                                        </div>
-                                        <div class="card-body">
-                                            <h6>This is User's Page</h6>
-                                            <h5>First Name: <?= $this->session->userdata('usersDetails')['FIRST_NAME']; ?></h5>
-                                            <h5>Last Name: <?= $this->session->userdata('usersDetails')['LAST_NAME']; ?></h5>
-                                            <h5 class="m-0">Email Address: <?= $this->session->userdata('usersDetails')['EMAIL_ADDRESS']; ?></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <main class="w-100 h-100 d-flex flex-column align-items-center overflow-auto">
+                        <div class="col-12 w-100 fs-5 d-flex align-items-center gap-3 p-4 border-bottom border-primary text-primary">
+                            <i class="text-primary fs-4 fa-solid fa-circle"></i>
+                            USERS LIST
+                        </div>
+                        <div class="col-12 p-4 h-100 d-flex flex-grow-1 flex-shrink-1 justify-content-center overflow-auto">
+                            <?php $this->load->view('simple_crud/components/Table') ?>
+                        </div>
+                        <div class="col-12 w-100 fs-5 d-flex align-items-center justify-content-end gap-3 p-4 border-top border-primary text-primary">
+                            <i class="text-primary fs-4 fa-solid fa-circle"></i>
+                            USERS LIST
                         </div>
                     </main>
                 </div>
