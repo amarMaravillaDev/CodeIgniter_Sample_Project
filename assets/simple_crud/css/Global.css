@@ -73,6 +73,23 @@ a {
     text-decoration: unset;
 }
 
+/* Remove the Bottom Border for Last Table Row */
+table tr:last-child {
+    border-bottom: 0px transparent;
+}
+
+/* Table Header and Table Data */
+th, td {
+    padding: 15px !important;
+    padding-inline: 25px !important;
+    white-space: nowrap;
+}
+
+/* Side Bar */
+.sideBar {
+    max-width: 24rem;
+}
+
 /* Show Password */
 #showPassword {
     cursor: pointer;
