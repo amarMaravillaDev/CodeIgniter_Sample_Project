@@ -4,7 +4,7 @@
 
 <div class="d-flex flex-wrap w-100 h-100">
     <div class="w-100 d-flex align-items-center position-relative">
-        <div class="position-fixed top-0 start-0 m-5 z-1">
+        <div class="position-fixed top-0 start-0 m-5 z-3">
             <div>
                 <a href="<?= base_url('simple_crud/login'); ?>" class="d-flex align-items-center justify-content-center gap-2 rounded-5 btn btn-primary focus-ring focus-ring-primary px-5 py-3">
                     <i class="fa-solid fa-arrow-right-to-bracket"></i> LOGIN
