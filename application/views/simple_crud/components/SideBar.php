@@ -5,6 +5,5 @@
 
 <aside class="w-100 d-flex border-end border-primary sideBar overflow-auto">
     <div>
-        popo
     </div>
 </aside>
