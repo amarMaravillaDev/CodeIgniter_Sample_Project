@@ -28,50 +28,53 @@
                 "50",
                 "100"
             );
-            $pageFilter = 0;
-            $page = 0;
+            
             $startIndex = 0;
             $totalRows = 0;
 
-            if($this->input->get('page')) {
-                $page = $this->input->get('page');
-            }
+            $page = $this->input->get('page') ? $this->input->get('page') : 0;
+            $rowFilter = $this->input->get('rowFilter') ? $this->input->get('rowFilter') : 0;
+            $searchFor = $this->input->get('searchFor') ? $this->input->get('searchFor') : "";
+            $sortBy = $this->input->get('sortBy') ? $this->input->get('sortBy') : "USERS_ID";
+            $orderBy = $this->input->get('orderBy') ? $this->input->get('orderBy') : "ASC";
 
-            if($this->input->get('usersFilter')) {
-                $pageFilter = $this->input->get('usersFilter');
-            }
+            // if($this->input->get('page')) {
+            //     $page = $this->input->get('page');
+            // }
+
+            // if($this->input->get('rowFilter')) {
+            //     $rowFilter = $this->input->get('rowFilter');
+            // }
 
             if($page != 0) {
-                $startIndex = $pageFilter * ($page - 1);
+                $startIndex = $rowFilter * ($page - 1);
             }
 
             // echo '<script> console.log(`Page (Controller): `, ' . json_encode($page) . '); </script>';
-            // echo '<script> console.log(`Page Filter (Controller): `, ' . json_encode($pageFilter) . '); </script>';
+            // echo '<script> console.log(`Page Filter (Controller): `, ' . json_encode($rowFilter) . '); </script>';
             // echo '<script> console.log(`Start Index (Controller): `, ' . json_encode($startIndex) . '); </script>';
 
-            if($this->input->get('usersSearch')) {
-                $searchFor = $this->input->get('usersSearch');
-
-                $usersListSeeds = $this->Users->searchUsers($pageFilter, $startIndex, $searchFor, $rowCount = 0);
-                $totalRows = $this->Users->searchUsers("", "", $searchFor, $rowCount = 1);
+            if($searchFor) {
+                $usersListSeeds = $this->Users->searchUsers($sortBy, $orderBy, $rowFilter, $startIndex, $searchFor, FALSE);
+                $totalRows = $this->Users->searchUsers("", "", "", "", $searchFor, TRUE);
             }
             else {
-                $usersListSeeds = $this->Users->searchUsers($pageFilter, $startIndex, "", $rowCount = 0);
-                $totalRows = $this->Users->searchUsers("", "", "", $rowCount = 1);
+                $usersListSeeds = $this->Users->searchUsers($sortBy, $orderBy, $rowFilter, $startIndex, "", FALSE);
+                $totalRows = $this->Users->searchUsers("", "", "", "", "", TRUE);
             }
 
             // Pagination Configurations
             $paginationConfig['base_url'] = base_url('simple_crud/users');
-            $paginationConfig['attributes'] = array('class' => 'page-link fs-6 p-3 px-4 border-0 btn btn-primary d-flex justify-content-center align-items-center gap-2');
+            $paginationConfig['attributes'] = array('class' => 'page-link bg-primary bg-opacity-10 fs-6 p-3 px-4 border-0 btn btn-primary d-flex justify-content-center align-items-center gap-2');
             $paginationConfig['total_rows'] = $totalRows;
-            $paginationConfig['per_page'] = $pageFilter;
+            $paginationConfig['per_page'] = $rowFilter;
             $paginationConfig['num_links'] = 2;
             $paginationConfig['enable_query_strings'] = TRUE;
             $paginationConfig['use_page_numbers'] = TRUE;
             $paginationConfig['page_query_string'] = TRUE;
             $paginationConfig['query_string_segment'] = 'page';
             $paginationConfig['reuse_query_string'] = TRUE;
-            $paginationConfig['full_tag_open'] = '<ul class="pagination pagination-lg justify-content-center flex-wrap align-items-center gap-1 m-0">';
+            $paginationConfig['full_tag_open'] = '<ul class="pagination pagination-lg justify-content-center flex-wrap align-items-center gap-2 m-0">';
             $paginationConfig['full_tag_close'] = '</ul>';
             $paginationConfig['first_link'] = '<i class="fa-solid fa-angles-left"></i> First';
             $paginationConfig['first_tag_open'] = '<li class="page-item">';
@@ -101,15 +104,15 @@
 
             // Table Columns to be shown
             $tableColumns = array(
-                "FIRST NAME",
-                "MIDDLE NAME",
-                "LAST NAME",
-                "SUFFIX",
-                "GENDER",
-                "BIRTH DATE",
-                "AGE",
-                "CONTACT NUMBER",
-                "EMAIL ADDRESS"
+                array("tableColumn" => "FIRST NAME", "dbColumn" => "FIRST_NAME"),
+                array("tableColumn" => "MIDDLE NAME", "dbColumn" => "MIDDLE_NAME"),
+                array("tableColumn" => "LAST NAME", "dbColumn" => "LAST_NAME"),
+                array("tableColumn" => "SUFFIX", "dbColumn" => "SUFFIX"),
+                array("tableColumn" => "GENDER", "dbColumn" => "GENDER"),
+                array("tableColumn" => "BIRTH DATE", "dbColumn" => "BIRTH_DATE"),
+                array("tableColumn" => "AGE", "dbColumn" => "AGE"),
+                array("tableColumn" => "CONTACT NUMBER", "dbColumn" => "CONTACT_NUMBER"),
+                array("tableColumn" => "EMAIL ADDRESS", "dbColumn" => "EMAIL_ADDRESS")
             );
 
             // Table Columns not to be shown
@@ -123,7 +126,7 @@
             // Parameters
             $viewsData = array(
                 "document" => array(
-                    "title" => "| ",
+                    "title" => "| " . $this->session->userdata('usersDetails')['FIRST_NAME'] . " " . $this->session->userdata('usersDetails')['LAST_NAME'],
                     "css"=> "Users",
                     "script"=> "Users"
                 ),
@@ -139,6 +142,10 @@
                 // ),
                 "page" => $page,
                 "pageFilters" => $pageFilters,
+                "rowFilter" => $rowFilter,
+                "searchFor" => $searchFor,
+                "sortBy" => $sortBy,
+                "orderBy" => $orderBy,
                 "paginationLinks" => $this->pagination->create_links()  
             );
 
