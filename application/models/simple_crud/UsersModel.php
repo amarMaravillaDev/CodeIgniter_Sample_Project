@@ -35,12 +35,12 @@
         //     return $query->result_array();
         // }
 
-        public function searchUsers($pageFilter = "", $startIndex = "", $searchFor = "", $rowCount = 0) {
-            // echo '<script> console.log(`Page Filter (Model): `, ' . json_encode($pageFilter) . '); </script>';
+        public function searchUsers($sortBy = "", $orderBy = "", $rowFilter = "", $startIndex = "", $searchFor = "", $rowCount = FALSE) {
+            // echo '<script> console.log(`Page Filter (Model): `, ' . json_encode($rowFilter) . '); </script>';
             // echo '<script> console.log(`Start Index (Model): `, ' . json_encode($startIndex) . '); </script>';
 
-            if($pageFilter != "" || $startIndex != "") {
-                $this->db->limit($pageFilter, $startIndex);
+            if($rowFilter != "" || $startIndex != "") {
+                $this->db->limit($rowFilter, $startIndex);
             }
 
             if($searchFor) {
@@ -55,7 +55,11 @@
                 $this->db->or_like('EMAIL_ADDRESS', $searchFor, 'both');
             }
 
-            if($rowCount == 1) {
+            if($sortBy && $orderBy) {
+                $this->db->order_by($sortBy, $orderBy);
+            }
+
+            if($rowCount == TRUE) {
                 $query = $this->db->get('SIMPLE_CRUD_USERS_SEEDS');
 
                 return $query->num_rows();
