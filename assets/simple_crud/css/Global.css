@@ -79,10 +79,36 @@ table tr:last-child {
 }
 
 /* Table Header and Table Data */
-th, td {
+/* th, td {
     padding: 15px !important;
     padding-inline: 25px !important;
     white-space: nowrap;
+} */
+
+/* Page Links */
+.page-link:focus {
+    color: unset;
+    background-color: unset;
+}
+
+.page-link:hover {
+    color: var(--bs-btn-hover-color);
+    background-color: var(--bs-btn-hover-bg) !important;
+}
+
+/* Table Headers */
+th i::before {
+    width: 1px;
+    height: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Table Spinner */
+.tableSpinner {
+    width: 70px;
+    height: 70px;
 }
 
 /* Side Bar */
