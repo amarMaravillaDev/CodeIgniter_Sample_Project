@@ -31,6 +31,9 @@
             
             $startIndex = 0;
             $totalRows = 0;
+            $dbTotalRows = $this->Users->searchUsers("", "", "", "", "", TRUE);
+
+            // echo '<script> console.log(`DB Row Count (Controller): `, ' . json_encode($dbTotalRows) . '); </script>';
 
             $page = $this->input->get('page') ? $this->input->get('page') : 0;
             $rowFilter = $this->input->get('rowFilter') ? $this->input->get('rowFilter') : 0;
@@ -146,6 +149,8 @@
                 "searchFor" => $searchFor,
                 "sortBy" => $sortBy,
                 "orderBy" => $orderBy,
+                "totalRows" => $totalRows,
+                "dbTotalRows" => $dbTotalRows,
                 "paginationLinks" => $this->pagination->create_links()  
             );
 
