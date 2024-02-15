@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 ?>
 
     <div class="overflow-auto w-100 h-100 table-responsive-sm">
-        <table class="table table-hover table-striped border-primary m-0 p-0">
+        <table class="table table-hover table-striped w-100 h-100 border-primary m-0 p-0">
             <thead>
 
                 <?php foreach ($table['tableColumns'] as $columnName) { ?>
@@ -22,12 +22,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
             </thead>
             <tbody class="border-secondary-subtle">
+                
+                <?php if(!$totalRows && $searchFor) { ?>
+                    <tr colspan="<?= count($table['tableColumns'])?>" class="w-100 h-100">
+                        <td colspan="<?= count($table['tableColumns'])?>" class="w-100 h-100">
+                            <div class="text-primary w-100 h-100 d-flex flex-column gap-3 align-items-center justify-content-center fs-5">
+                                <!-- <i class="fa-solid fa-clipboard-question tableDataIcon"></i> -->
+                                <i class="fa-solid fa-file-circle-xmark tableDataIcon"></i>
 
-                <?php foreach ($table['tableData'] as $row) { ?>
+                                No Record/s Found for "<?= $searchFor ?>".
+                            </div>
+                        </td>
+                    </tr>
+                <?php } else { ?>
+
+                <?php foreach ($table['tableData'] as $column) { ?>
                     <tr>
 
                         <?php
-                        foreach ($row as $columnName => $columnValue) {
+                        foreach ($column as $columnName => $columnValue) {
                             if (!in_array($columnName, $table['tableColumnsNotShown'])) {
                                 ?>
                                 <td class="text-nowrap p-4">
@@ -39,7 +52,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         ?>
 
                     </tr>
-                <?php } ?>
+                <?php }} ?>
 
             </tbody>
         </table>
