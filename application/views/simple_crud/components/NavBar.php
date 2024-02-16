@@ -4,7 +4,7 @@
 ?>
 
 <nav class="navbar navbar-expand-lg bg-primary bg-gradient p-0">
-    <div class="px-5 py-4 d-flex justify-content-between align-items-center w-100">
+    <div class="p-4 d-flex justify-content-between align-items-center w-100">
         <div class="d-flex align-items-center gap-3">
             <i class="fs-3 text-light fa-solid fa-circle"></i>
 
