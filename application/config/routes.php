@@ -55,6 +55,7 @@
 
     // Users Controller Routes
     $route['simple_crud/users']['GET'] = 'simple_crud/users/Users';
+    $route['simple_crud/users/users_list']['GET'] = 'simple_crud/users/Users/usersList';
 
     // Random Seeder Controller Routes
     $route['simple_crud/random_seeder']['GET'] = 'simple_crud/seeder/RandomSeeder/seed';
