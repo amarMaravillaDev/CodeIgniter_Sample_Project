@@ -29,7 +29,7 @@ class Login extends CI_Controller
     {
         // Parameters
         $viewsData = array(
-            "document" => array(
+            "documentData" => array(
                 "title" => "| Login",
                 "css" => "Login",
                 "script" => "Login"
@@ -44,8 +44,16 @@ class Login extends CI_Controller
 
     public function login()
     {
-        $this->form_validation->set_rules('loginEmailAddress', 'Email Address', 'trim|required|valid_email');
-        $this->form_validation->set_rules('loginPassword', 'Password', 'trim|required');
+        $this->form_validation->set_rules(
+            'loginEmailAddress',
+            'Email Address',
+            'trim|required|valid_email'
+        );
+        $this->form_validation->set_rules(
+            'loginPassword',
+            'Password',
+            'trim|required'
+        );
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('login', 'login');
@@ -78,16 +86,37 @@ class Login extends CI_Controller
                     $this->session->set_userdata('userType', $response->USER_TYPE);
                     $this->session->set_userdata('usersDetails', $usersDetails);
 
-                    $this->session->set_flashdata('usersToast', array('toastStatus' => 'success', 'toastMessage' => 'You are Logged In Successfully.'));
+                    $this->session->set_flashdata(
+                        'usersToast',
+                        array(
+                            'toastStatus' => 'success',
+                            'toastMessage' => 'You are Logged In Successfully.',
+                            'toastIcon' => 'check_circle'
+                        )
+                    );
 
                     redirect(base_url('simple_crud/users'));
                 } else {
-                    $this->session->set_flashdata('loginToast', array('toastStatus' => 'danger', 'toastMessage' => 'Invalid Email or Password.'));
+                    $this->session->set_flashdata(
+                        'loginToast',
+                        array(
+                            'toastStatus' => 'danger',
+                            'toastMessage' => 'Invalid Email or Password.',
+                            'toastIcon' => 'error'
+                        )
+                    );
 
                     redirect(base_url('simple_crud/login'));
                 }
             } else {
-                $this->session->set_flashdata('loginToast', array('toastStatus' => 'danger', 'toastMessage' => 'Invalid Email or Password.'));
+                $this->session->set_flashdata(
+                    'loginToast',
+                    array(
+                        'toastStatus' => 'danger',
+                        'toastMessage' => 'Invalid Email or Password.',
+                        'toastIcon' => 'error'
+                    )
+                );
 
                 redirect(base_url('simple_crud/login'));
             }
