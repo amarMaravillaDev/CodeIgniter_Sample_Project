@@ -25,8 +25,34 @@ class Users extends CI_Controller
     {
         // Default View Variables
         if (!$viewsData) {
+            $activeUsers = $this->Users->activeUsers();
+            $inactiveUsers = $this->Users->inactiveUsers();
+            $totalRows = $this->Users->searchUsers("", "", "", "", "", TRUE);
+
+            // echo '<script> console.log(`Active: `, ' . json_encode($inactiveUsers) . '); </script>';
+
             $viewsData = array(
-                "view" => "simple_crud/users/DashBoard"
+                "view" => "simple_crud/users/DashBoard",
+                "cards" => array(
+                    "usersList" => array(
+                        "cardTotalNumber" => $totalRows,
+                        "cardTitle" => "USERS",
+                        "cardIcon" => "person",
+                        "cardTextColor" => "text-primary"
+                    ),
+                    "activeUsers" => array(
+                        "cardTotalNumber" => $activeUsers,
+                        "cardTitle" => "ACTIVE USERS",
+                        "cardIcon" => "person_check",
+                        "cardTextColor" => "text-success"
+                    ),
+                    "inactiveUsers" => array(
+                        "cardTotalNumber" => $inactiveUsers,
+                        "cardTitle" => "INACTIVE USERS",
+                        "cardIcon" => "person_cancel",
+                        "cardTextColor" => "text-danger"
+                    )
+                )
             );
         }
 
@@ -40,7 +66,7 @@ class Users extends CI_Controller
             "viewsData" => $viewsData
         );
 
-        echo '<script> console.log(`Views Data: `, ' . json_encode($viewsMainData) . '); </script>';
+        // echo '<script> console.log(`Views Data: `, ' . json_encode($viewsMainData) . '); </script>';
 
         // Views
         $this->load->view('simple_crud/components/Header', $viewsMainData);
@@ -97,10 +123,10 @@ class Users extends CI_Controller
 
         // Pagination Configurations
         $paginationConfig['base_url'] = base_url('simple_crud/users/users_list');
-        $paginationConfig['attributes'] = array('class' => 'page-link bg-primary bg-opacity-10 fs-6 p-3 px-4 border-0 btn btn-primary d-flex justify-content-center align-items-center gap-2');
+        $paginationConfig['attributes'] = array('class' => 'page-link bg-primary bg-opacity-10 fs-6 p-3 px-4 border-0 btn btn-primary d-flex justify-content-center align-items-center');
         $paginationConfig['total_rows'] = $totalRows;
         $paginationConfig['per_page'] = $rowFilter;
-        $paginationConfig['num_links'] = 2;
+        $paginationConfig['num_links'] = 1;
         $paginationConfig['enable_query_strings'] = TRUE;
         $paginationConfig['use_page_numbers'] = TRUE;
         $paginationConfig['page_query_string'] = TRUE;
@@ -144,7 +170,8 @@ class Users extends CI_Controller
             array("tableColumn" => "BIRTH DATE", "dbColumn" => "BIRTH_DATE"),
             array("tableColumn" => "AGE", "dbColumn" => "AGE"),
             array("tableColumn" => "CONTACT NUMBER", "dbColumn" => "CONTACT_NUMBER"),
-            array("tableColumn" => "EMAIL ADDRESS", "dbColumn" => "EMAIL_ADDRESS")
+            array("tableColumn" => "EMAIL ADDRESS", "dbColumn" => "EMAIL_ADDRESS"),
+            array("tableColumn" => "STATUS", "dbColumn" => "STATUS")
         );
 
         // Table Columns not to be shown
@@ -154,6 +181,8 @@ class Users extends CI_Controller
             "PASSWORD",
             "CREATED_DATE",
         );
+
+        $itemTo = min((int) $totalRows, ((int) $startIndex + (int) $rowFilter));
 
         $usersListData = array(
             "view" => "simple_crud/users/UsersList",
@@ -168,7 +197,9 @@ class Users extends CI_Controller
             //     "tableColumnsNotShown" => $tableColumnsNotShown
             // ),
             "page" => $page,
+            "itemTo" => $itemTo ? $itemTo : $totalRows,
             "pageFilters" => $pageFilters,
+            "startIndex" => $startIndex,
             "rowFilter" => $rowFilter,
             "searchFor" => $searchFor,
             "sortBy" => $sortBy,
