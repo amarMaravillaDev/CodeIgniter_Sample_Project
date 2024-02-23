@@ -10,7 +10,14 @@ class Login extends CI_Controller
 
         // Check the Session
         if ($this->session->has_userdata('userType')) {
-            $this->session->set_flashdata('usersToast', array('toastStatus' => 'primary', 'toastMessage' => 'You are Already Logged In.'));
+            $this->session->set_flashdata(
+                'usersToast',
+                array(
+                    'toastStatus' => 'primary',
+                    'toastMessage' => 'You are Already Logged In.',
+                    'toastIcon' => 'info'
+                )
+            );
 
             redirect(base_url('simple_crud/users'));
         }
