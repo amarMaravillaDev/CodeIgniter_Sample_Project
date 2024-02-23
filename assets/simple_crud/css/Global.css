@@ -17,6 +17,7 @@
 	font-size: 12px;
 	font-optical-sizing: auto;
 	font-style: normal;
+	scroll-behavior: smooth;
 }
 
 /* * {
@@ -257,6 +258,11 @@ th i::before {
 	margin-top: 5px !important;
 	left: unset !important;
 	right: 0;
+}
+
+/* Fade In */
+.fadeIn {
+	display: none;
 }
 
 /* Show and Hide Animation */
