@@ -1,6 +1,9 @@
 const globalFunctions = (() => {
 	return {
 		initialize: () => {
+			// Cards
+			$(`.fadeIn`).fadeIn(`slow`);
+
 			// Toast
 			const toasts = $(`#liveToast`);
 
@@ -38,7 +41,7 @@ const globalFunctions = (() => {
 
 			$(`.sideBar a`).each(function () {
 				if ($(this).attr(`href`) === currentURL.split(`?`)[0]) {
-					$(this).addClass(`active`);
+					$(this).addClass(`active fw-bold`);
 				}
 			});
 
