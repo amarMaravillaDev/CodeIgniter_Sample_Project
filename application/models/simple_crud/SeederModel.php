@@ -41,6 +41,7 @@ class SeederModel extends CI_Model
         $age = $this->calculateAge($birthDate);
         $contactNumber = $this->randomContactNumber();
         $emailAddress = strtolower($firstName . '.' . $lastName . '@example.com');
+        $status = (rand(0, 1) == 1) ? 'Active' : 'Inactive';
 
         return array(
             'FIRST_NAME' => $firstName,
@@ -51,7 +52,8 @@ class SeederModel extends CI_Model
             'BIRTH_DATE' => $birthDate,
             'AGE' => $age,
             'CONTACT_NUMBER' => $contactNumber,
-            'EMAIL_ADDRESS' => $emailAddress
+            'EMAIL_ADDRESS' => $emailAddress,
+            'STATUS' => $status
         );
     }
 
