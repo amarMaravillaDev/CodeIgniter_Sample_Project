@@ -8,7 +8,14 @@ class AuthenticationModel extends CI_Model
         parent::__construct();
 
         if (!$this->session->has_userdata('userType')) {
-            $this->session->set_flashdata('loginToast', array('toastStatus' => 'warning', 'toastMessage' => 'Log In First.'));
+            $this->session->set_flashdata(
+                'loginToast',
+                array(
+                    'toastStatus' => 'warning',
+                    'toastMessage' => 'Log In First.',
+                    'toastIcon' => 'warning'
+                )
+            );
 
             redirect(base_url('simple_crud/login'));
         }
@@ -20,7 +27,14 @@ class AuthenticationModel extends CI_Model
             if ($this->session->userdata('userType') == '1') {
             }
         } else {
-            $this->session->set_flashdata('loginToast', array('toastStatus' => 'warning', 'toastMessage' => 'Log In First.'));
+            $this->session->set_flashdata(
+                'loginToast',
+                array(
+                    'toastStatus' => 'warning',
+                    'toastMessage' => 'Log In First.',
+                    'toastIcon' => 'warning'
+                )
+            );
 
             redirect(base_url('simple_crud/login'));
         }
