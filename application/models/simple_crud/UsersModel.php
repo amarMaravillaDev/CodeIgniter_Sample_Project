@@ -56,6 +56,7 @@ class UsersModel extends CI_Model
             $this->db->or_like('AGE', $searchFor, 'both');
             $this->db->or_like('CONTACT_NUMBER', $searchFor, 'both');
             $this->db->or_like('EMAIL_ADDRESS', $searchFor, 'both');
+            $this->db->or_like('STATUS', $searchFor, 'both');
         }
 
         if ($sortBy && $orderBy) {
@@ -71,5 +72,25 @@ class UsersModel extends CI_Model
 
             return $query->result_array();
         }
+    }
+
+    public function activeUsers()
+    {
+        $this->db->select('*');
+        $this->db->where('STATUS', 'Active');
+
+        $query = $this->db->get('SIMPLE_CRUD_USERS_SEEDS');
+
+        return $query->num_rows();
+    }
+
+    public function inactiveUsers()
+    {
+        $this->db->select('*');
+        $this->db->where('STATUS', 'Inactive');
+
+        $query = $this->db->get('SIMPLE_CRUD_USERS_SEEDS');
+
+        return $query->num_rows();
     }
 }
