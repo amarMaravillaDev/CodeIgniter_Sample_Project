@@ -56,6 +56,11 @@
     // Users Controller Routes
     $route['simple_crud/users']['GET'] = 'simple_crud/users/Users';
     $route['simple_crud/users/users_list']['GET'] = 'simple_crud/users/Users/usersList';
+    $route['simple_crud/users/my_profile']['GET'] = 'simple_crud/users/Users/myProfile';
+    $route['simple_crud/users/edit_my_profile']['GET'] = 'simple_crud/users/Users/editMyProfile';
+    $route['simple_crud/users/edit_my_profile']['POST'] = 'simple_crud/users/Users/editMyProfile';
+    $route['simple_crud/users/change_password']['GET'] = 'simple_crud/users/Users/changePassword';
+    $route['simple_crud/users/change_password']['POST'] = 'simple_crud/users/Users/changePassword';
 
     // Random Seeder Controller Routes
     $route['simple_crud/random_seeder']['GET'] = 'simple_crud/seeder/RandomSeeder/seed';
