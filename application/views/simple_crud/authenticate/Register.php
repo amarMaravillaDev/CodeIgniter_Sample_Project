@@ -4,47 +4,32 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 <div class="d-flex flex-wrap w-100 h-100">
     <div class="w-100 d-flex align-items-center position-relative">
-        <div class="position-fixed top-0 start-0 m-5 z-3">
+        <div class="position-absolute top-0 start-0 p-5 z-3">
             <div>
                 <a href="<?= base_url('simple_crud/login'); ?>"
                     class="d-flex align-items-center justify-content-center gap-2 rounded-5 btn btn-primary focus-ring focus-ring-primary px-5 py-3">
-                    <i class="fa-solid fa-arrow-right-to-bracket"></i> LOGIN
+                    <!-- <i class="fa-solid fa-arrow-right-to-bracket"></i>  -->
+                    <span class="material-symbols-rounded">
+                        login
+                    </span>
+                    LOGIN
                 </a>
             </div>
         </div>
 
-        <?php if ($this->session->flashdata('registerToast')) {
-            $registerToast = json_decode(json_encode($this->session->flashdata('registerToast')));
+        <?php
+        if ($this->session->flashdata('registerToast')) {
+            $registerToast = $this->session->flashdata('registerToast');
 
-            // echo '<script> console.log(`Toast: `, ' . json_encode($registerToast->toastStatus) . '); </script>';
-            ?>
-            <div class="toast-container position-fixed top-0 end-0 p-5">
-                <div id="liveToast" class="toast overflow-hidden rounded-4 border-<?= $registerToast->toastStatus ?>"
-                    role="alert" aria-live="assertive" aria-atomic="true">
-                    <div
-                        class="toast-header border-<?= $registerToast->toastStatus ?> p-3 d-flex justify-content-between align-items-center">
-                        <div
-                            class="text-<?= $registerToast->toastStatus ?> d-flex align-items-center justify-content-center gap-2">
-                            <i class="text-<?= $registerToast->toastStatus ?> fa-solid fa-circle"></i>
-                            SIMPLE CRUD
-                        </div>
-                        <button type="button" class="btn-close m-0" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div
-                        class="toast-body d-flex align-items-center gap-2 bg-<?= $registerToast->toastStatus ?> <?= ($registerToast->toastStatus) ? "text-light" : ""; ?> p-3">
-                        <span class="material-symbols-rounded">
-                            <?= $registerToast->toastIcon ?>
-                        </span>
+            $this->load->view('simple_crud/components/Toast', array("toast" => $registerToast));
 
-                        <?= $registerToast->toastMessage ?>
-                    </div>
-                </div>
-            </div>
-        <?php } ?>
+            // echo '<script> console.log(`Toast: `, ' . json_encode($registerToast) . '); </script>';
+        }
+        ?>
 
         <div
             class="p-5 w-100 h-100 d-flex flex-column align-items-center justify-content-center gap-4 bg-primary-subtle p-auto">
-            <div class="container">
+            <div class="container p-0">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-9 col-md-10 col-sm-12">
                         <form action="<?= base_url('simple_crud/register'); ?>" id="registerForm" method="POST"
@@ -54,10 +39,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                             <div class="card shadow-lg border border-0 rounded-5 overflow-hidden">
                                 <div class="card-header d-flex align-items-center gap-3 p-4">
-                                    <i class="fs-3 text-primary fa-solid fa-circle"></i>
+                                    <!-- <i class="fs-3 text-primary fa-solid fa-circle"></i> -->
+                                    <span class="text-primary fs-1 material-symbols-rounded">
+                                        circle
+                                    </span>
 
                                     <div class="d-flex gap flex-column text-center">
-                                        <p class="fs-4 text-primary m-0 d-flex">USERS FORM</p>
+                                        <h4 class="text-primary m-0 d-flex">USERS FORM</h4>
                                         <p class="m-0 d-flex">(REGISTER AN USER)</p>
                                     </div>
                                 </div>
@@ -65,11 +53,23 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     <div class="d-grid gap-5 align-items-start w-100">
                                         <div class="row gap-3">
                                             <div class="col-12">
+                                                <div
+                                                    class="d-flex align-items-center gap-2 text-primary p-3 bg-primary bg-opacity-10 rounded-2 border-3 border-start border-primary">
+                                                    <span class="material-symbols-rounded">
+                                                        person_edit
+                                                    </span>
+                                                    <h5>PERSONAL INFORMATION</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
                                                 <div class="row gap-3 gap-md-0">
                                                     <div class="col-md-6">
                                                         <div class="input-group has-validation">
                                                             <span class="input-group-text px-4">
-                                                                <i class="fa-solid fa-user"></i>
+                                                                <!-- <i class="fa-solid fa-user"></i> -->
+                                                                <span class="material-symbols-rounded">
+                                                                    person
+                                                                </span>
                                                             </span>
                                                             <div
                                                                 class="form-floating <?= form_error('regFirstName') ? "is-invalid" : (($this->input->post('regFirstName')) ? "is-valid" : ""); ?>">
@@ -88,7 +88,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     <div class="col-md-6">
                                                         <div class="input-group has-validation">
                                                             <span class="input-group-text px-4">
-                                                                <i class="fa-solid fa-user"></i>
+                                                                <!-- <i class="fa-solid fa-user"></i> -->
+                                                                <span class="material-symbols-rounded">
+                                                                    person
+                                                                </span>
                                                             </span>
                                                             <div
                                                                 class="form-floating <?= $this->session->flashdata('register') ? (form_error('regMiddleName') ? "is-invalid" : (($this->input->post('regMiddleName') || $this->input->post('regMiddleName') == "") ? "is-valid" : "")) : ""; ?>">
@@ -112,7 +115,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     <div class="col-md-6">
                                                         <div class="input-group has-validation">
                                                             <span class="input-group-text px-4">
-                                                                <i class="fa-solid fa-user"></i>
+                                                                <!-- <i class="fa-solid fa-user"></i> -->
+                                                                <span class="material-symbols-rounded">
+                                                                    person
+                                                                </span>
                                                             </span>
                                                             <div
                                                                 class="form-floating <?= form_error('regLastName') ? "is-invalid" : (($this->input->post('regLastName')) ? "is-valid" : ""); ?>">
@@ -131,7 +137,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     <div class="col-md-6">
                                                         <div class="input-group has-validation">
                                                             <span class="input-group-text px-4">
-                                                                <i class="fa-solid fa-user"></i>
+                                                                <!-- <i class="fa-solid fa-user"></i> -->
+                                                                <span class="material-symbols-rounded">
+                                                                    person
+                                                                </span>
                                                             </span>
                                                             <div
                                                                 class="form-floating <?= $this->session->flashdata('register') ? (form_error('regSuffix') ? "is-invalid" : (($this->input->post('regSuffix') || $this->input->post('regSuffix') == "") ? "is-valid" : "")) : ""; ?>">
@@ -148,34 +157,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-6">
                                                 <div class="input-group has-validation">
                                                     <span class="input-group-text px-4">
-                                                        <i class="fa-solid fa-venus-mars"></i>
+                                                        <!-- <i class="fa-solid fa-venus-mars"></i> -->
+                                                        <span class="material-symbols-rounded">
+                                                            male
+                                                        </span>
                                                     </span>
                                                     <div
                                                         class="form-floating <?= form_error('regGender') ? "is-invalid" : (($this->input->post('regGender')) ? "is-valid" : ""); ?>">
                                                         <select id="regGender" name="regGender"
                                                             class="form-select <?= form_error('regGender') ? "is-invalid" : (($this->input->post('regGender')) ? "is-valid" : ""); ?>">
-                                                            <!-- <?php
-                                                            $genders = ['Gender' => '', 'Male' => '', 'Female' => ''];
-
-                                                            foreach ($genders as $gender => $genderValue) {
-                                                                if (set_value('regGender')) {
-                                                                    if ($gender == set_value('regGender')) {
-                                                                        $genders[$gender] = "selected";
-                                                                        // echo '<script> console.log(`Gender: ' . json_encode($gender) . '`); </script>';
-                                                                    }
-                                                                } else {
-                                                                    $genders['Gender'] = "selected";
-                                                                }
-                                                            }
-                                                            // echo '<script> console.log(`All: ' . json_encode($genders) . '`); </script>';
-                                                            ?> -->
-
                                                             <option <?= set_select('regGender', "") ?> value="">Select
                                                                 Your Gender</option>
                                                             <option <?= set_select('regGender', "Male") ?> value="Male">
@@ -190,15 +183,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="row">
                                             <div class="col-12">
                                                 <div class="row gap-3 gap-md-0">
                                                     <div class="col-md-6">
                                                         <div class="input-group has-validation">
                                                             <span class="input-group-text px-4">
-                                                                <i class="fa-solid fa-calendar-days"></i>
+                                                                <!-- <i class="fa-solid fa-calendar-days"></i> -->
+                                                                <span class="material-symbols-rounded">
+                                                                    event
+                                                                </span>
                                                             </span>
                                                             <div
                                                                 class="form-floating <?= form_error('regBirthDate') ? "is-invalid" : (($this->input->post('regBirthDate')) ? "is-valid" : ""); ?>">
@@ -217,7 +210,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     <div class="col-md-6">
                                                         <div class="input-group has-validation">
                                                             <span class="input-group-text px-4">
-                                                                <i class="fa-solid fa-user-clock"></i>
+                                                                <!-- <i class="fa-solid fa-user-clock"></i> -->
+                                                                <span class="material-symbols-rounded">
+                                                                    calendar_clock
+                                                                </span>
                                                             </span>
 
                                                             <?php
@@ -252,11 +248,23 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                                         <div class="row gap-3">
                                             <div class="col-12">
+                                                <div
+                                                    class="d-flex align-items-center gap-2 fs-5 fw-bold text-primary p-3 bg-primary bg-opacity-10 rounded-2 border-3 border-start border-primary">
+                                                    <span class="material-symbols-rounded">
+                                                        lock
+                                                    </span>
+                                                    <h5>SECURITY INFORMATION</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
                                                 <div class="row gap-3 gap-md-0">
                                                     <div class="col-md-6">
                                                         <div class="input-group has-validation">
                                                             <span class="input-group-text px-4">
-                                                                <i class="fa-solid fa-phone"></i>
+                                                                <!-- <i class="fa-solid fa-phone"></i> -->
+                                                                <span class="material-symbols-rounded">
+                                                                    call
+                                                                </span>
                                                             </span>
                                                             <div
                                                                 class="form-floating <?= form_error('regContactNumber') ? "is-invalid" : (($this->input->post('regContactNumber')) ? "is-valid" : ""); ?>">
@@ -275,7 +283,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     <div class="col-md-6">
                                                         <div class="input-group has-validation">
                                                             <span class="input-group-text px-4">
-                                                                <i class="fa-solid fa-envelope"></i>
+                                                                <!-- <i class="fa-solid fa-envelope"></i> -->
+                                                                <span class="material-symbols-rounded">
+                                                                    mail
+                                                                </span>
                                                             </span>
                                                             <div
                                                                 class="form-floating <?= form_error('regEmailAddress') ? "is-invalid" : (($this->input->post('regEmailAddress')) ? "is-valid" : ""); ?>">
@@ -298,7 +309,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     <div class="col-md-6">
                                                         <div class="input-group has-validation">
                                                             <span class="input-group-text px-4">
-                                                                <i class="fa-solid fa-lock"></i>
+                                                                <!-- <i class="fa-solid fa-lock"></i> -->
+                                                                <span class="material-symbols-rounded">
+                                                                    key
+                                                                </span>
                                                             </span>
                                                             <div
                                                                 class="password form-floating <?= form_error('regPassword') ? "is-invalid" : (($this->input->post('regPassword')) ? "is-valid" : ""); ?>">
@@ -311,7 +325,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                             </div>
                                                             <button id="regShowPassword" type="button"
                                                                 class="showPassword focus-ring focus-ring-primary input-group-text px-4 d-flex align-items-center justify-content-center">
-                                                                <i class="fa-solid fa-eye fs-5"></i>
+                                                                <!-- <i class="fa-solid fa-eye fs-5"></i> -->
+                                                                <span class="material-symbols-rounded">
+                                                                    visibility
+                                                                </span>
                                                             </button>
                                                             <div class="invalid-feedback">
                                                                 <?= form_error('regPassword'); ?>
@@ -321,7 +338,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     <div class="col-md-6">
                                                         <div class="input-group has-validation">
                                                             <span class="input-group-text px-4">
-                                                                <i class="fa-solid fa-lock"></i>
+                                                                <!-- <i class="fa-solid fa-lock"></i> -->
+                                                                <span class="material-symbols-rounded">
+                                                                    key
+                                                                </span>
                                                             </span>
                                                             <div
                                                                 class="password form-floating <?= form_error('regConfirmPassword') ? "is-invalid" : (($this->input->post('regConfirmPassword')) ? "is-valid" : ""); ?>">
@@ -334,7 +354,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                             </div>
                                                             <button id="regShowConfirmPassword" type="button"
                                                                 class="showPassword focus-ring focus-ring-primary input-group-text px-4 d-flex align-items-center justify-content-center">
-                                                                <i class="fa-solid fa-eye fs-5"></i>
+                                                                <!-- <i class="fa-solid fa-eye fs-5"></i> -->
+                                                                <span class="material-symbols-rounded">
+                                                                    visibility
+                                                                </span>
                                                             </button>
                                                             <div class="invalid-feedback">
                                                                 <?= form_error('regConfirmPassword'); ?>
