@@ -12,7 +12,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     user_attributes
                 </span>
 
-                USERS LIST
+                <h5>USERS LIST</h5>
             </div>
         </div>
     </div>
@@ -121,7 +121,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         <?php if ($viewsData['dbTotalRows']) { ?>
             <div
-                class="col d-flex flex-wrap align-items-center justify-content-center justify-content-lg-between  p-4 gap-4">
+                class="col border-1 border-top border-primary d-flex flex-wrap align-items-center justify-content-center justify-content-lg-between  p-4 gap-4">
                 Showing
                 <?= $viewsData['startIndex'] + 1 ?> to
                 <?= $viewsData['itemTo'] ?>
