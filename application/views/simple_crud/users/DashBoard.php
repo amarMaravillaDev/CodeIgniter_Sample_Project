@@ -12,7 +12,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     space_dashboard
                 </span>
 
-                DASHBOARD
+                <h5>DASHBOARD</h5>
             </div>
         </div>
     </div>
