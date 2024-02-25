@@ -82,6 +82,12 @@ body {
 	height: 100%;
 }
 
+/* Typography */
+h1, h2, h3, h4, h5, h6, p {
+	margin: 0;
+	padding: 0;
+}
+
 /* Label */
 label::after {
 	background-color: transparent !important;
@@ -187,13 +193,22 @@ th i::before {
 	border-bottom-left-radius: 0;
 }
 
-.accordion-item:first-of-type a.btn {
+/* .accordion-item:first-of-type a.btn {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
-}
+} */
 
 .accordion-item a.btn:hover {
 	background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity));
+}
+
+.accordion-item a.btn.active {
+	background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity));
+}
+
+.accordion-item a.btn:last-child {
+	border-bottom-right-radius: var(--bs-border-radius) !important;
+	border-bottom-left-radius: var(--bs-border-radius) !important;
 }
 
 /* Side Bar Buttons */
@@ -254,15 +269,20 @@ th i::before {
 }
 
 /* Dropdown for Logout Button */
-.dropDownLogout {
+/* .dropDownLogout {
 	margin-top: 5px !important;
 	left: unset !important;
 	right: 0;
-}
+} */
 
 /* Fade In */
 .fadeIn {
 	display: none;
+}
+
+/* Dashboard Card */
+.dashBoardCard {
+	min-height: 165px;
 }
 
 /* Show and Hide Animation */
