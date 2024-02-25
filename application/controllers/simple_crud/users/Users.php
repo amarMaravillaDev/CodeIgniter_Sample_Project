@@ -63,15 +63,53 @@ class Users extends CI_Controller
                 "css" => "",
                 "script" => "Users"
             ),
-            "viewsData" => $viewsData
-        );
+            "viewsData" => $viewsData,
+            "sideBar" => array(
+                "anchor" => array(
+                    array(
+                        "baseURL" => "simple_crud/users",
+                        "icon" => "space_dashboard",
+                        "linkName" => "Dashboard"
+                    ),
+                    array(
+                        "baseURL" => "simple_crud/users/users_list",
+                        "icon" => "user_attributes",
+                        "linkName" => "Users List"
+                    ),
+                    array(
+                        "baseURL" => "simple_crud/users/my_profile",
+                        "icon" => "person",
+                        "linkName" => "My Profile"
+                    )
+                ),
+                "dropDown" => array(
+                    array(
+                        "icon" => "settings",
+                        "linkName" => "Settings",
+                        "links" => array(
+                            array(
+                                "baseURL" => "simple_crud/users/edit_my_profile",
+                                "icon" => "person_edit",
+                                "linkName" => "Edit My Profile"
+                            ),
+                            array(
+                                "baseURL" => "simple_crud/users/change_password",
+                                "icon" => "passkey",
+                                "linkName" => "Change Password"
+                            )
+                        )
+                    )
+                )
+            )
 
-        // echo '<script> console.log(`Views Data: `, ' . json_encode($viewsMainData) . '); </script>';
+        );
 
         // Views
         $this->load->view('simple_crud/components/Header', $viewsMainData);
         $this->load->view('simple_crud/users/Users', $viewsMainData);
         $this->load->view('simple_crud/components/Footer', $viewsMainData);
+
+        // echo '<script> console.log(`Views Data: `, ' . json_encode($viewsMainData) . '); </script>';
     }
 
     public function usersList()
@@ -184,7 +222,7 @@ class Users extends CI_Controller
 
         $itemTo = min((int) $totalRows, ((int) $startIndex + (int) $rowFilter));
 
-        $usersListData = array(
+        $viewsData = array(
             "view" => "simple_crud/users/UsersList",
             "usersSeedsTable" => array(
                 "tableData" => $usersListSeeds,
@@ -209,6 +247,30 @@ class Users extends CI_Controller
             "paginationLinks" => $this->pagination->create_links()
         );
 
-        $this->index($usersListData);
+        $this->index($viewsData);
+    }
+
+    public function myProfile() {
+        $viewsData = array(
+            "view" => "simple_crud/users/MyProfile",
+        );
+
+        $this->index($viewsData);
+    }
+
+    public function editMyProfile() {
+        $viewsData = array(
+            "view" => "simple_crud/users/EditMyProfile",
+        );
+
+        $this->index($viewsData);
+    }
+
+    public function changePassword() {
+        $viewsData = array(
+            "view" => "simple_crud/users/ChangePassword",
+        );
+
+        $this->index($viewsData);
     }
 }
