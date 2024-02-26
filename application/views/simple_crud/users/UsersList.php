@@ -5,7 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <main class="border-end border-primary w-100 h-100 d-flex flex-column align-items-center overflow-auto">
     <!-- Top Navigations -->
     <div class="col-12 p-4 border-bottom border-primary">
-        <div class="row gap-3 gap-lg-0">
+        <div class="row">
             <div class="col-lg-4 fs-5 d-flex align-items-center gap-3 text-primary ">
                 <!-- <i class="fs-4 fa-solid fa-circle"></i> -->
                 <span class="material-symbols-rounded">
@@ -18,7 +18,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </div>
 
     <!-- Main Content -->
-    <div class="p-0 w-100 h-100 overflow-auto position-relative bg-light d-flex flex-column">
+    <div class="w-100 h-100 overflow-auto position-relative bg-light d-flex flex-column">
         <div class="d-flex align-items-center justify-content-center p-4">
             <form id="usersSearchForm" action="<?= base_url('simple_crud/users/users_list') ?>" method="GET"
                 class="col tableForm row gap-3 justify-content-between gap-lg-0 align-items-center" novalidate>
@@ -89,7 +89,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </form>
         </div>
 
-        <div class="p-0 w-100 h-100 overflow-auto position-relative border-1 border-top border-primary">
+        <div class="w-100 h-100 overflow-auto position-relative border-1 border-top border-primary">
             <!-- Table Loader -->
             <div
                 class="position-absolute tableLoader flex-column align-items-center justify-content-center gap-4 overflow-hidden w-100 h-100 bg-light z-3">
@@ -121,7 +121,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         <?php if ($viewsData['dbTotalRows']) { ?>
             <div
-                class="col border-1 border-top border-primary d-flex flex-wrap align-items-center justify-content-center justify-content-lg-between  p-4 gap-4">
+                class="col border-1 border-top border-primary d-flex flex-wrap align-items-center justify-content-center justify-content-lg-between p-4 gap-4">
                 Showing
                 <?= $viewsData['startIndex'] + 1 ?> to
                 <?= $viewsData['itemTo'] ?>
