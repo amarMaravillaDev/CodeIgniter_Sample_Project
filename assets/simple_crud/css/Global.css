@@ -285,6 +285,18 @@ th i::before {
 	min-height: 165px;
 }
 
+/* Profile Board */
+.profileBoard {
+	height: 200px;
+}
+
+/* Profile Image */
+.profileImage {
+	width: 180px;
+	height: 180px;
+	border-radius: 100%;
+}
+
 /* Show and Hide Animation */
 
 .showHide {
