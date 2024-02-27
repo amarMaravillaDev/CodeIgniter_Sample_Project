@@ -19,12 +19,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
     <!-- Main Content -->
     <div class="w-100 h-100 overflow-auto position-relative bg-light">
-        <div class="col-12 p-4">
-            <div class="row">
-                <div class="col-12">
-                    <div class="position-relative profileBoard d-flex justify-content-center justify-content-md-start bg-primary bg-opacity-25 rounded-2">
+        <div class="col-12 p-0 h-100">
+            <div class="row m-0">
+                <div class="col-12 p-0">
+                    <div class="position-relative profileBoard d-flex justify-content-center justify-content-md-start">
                         <div class="w-100 h-100">
-                            <img src="" alt="coverPhoto" class="d-flex align-items-center justify-content-center bg-primary bg-opacity-25 w-100 h-100 rounded-2">
+                            <img src="" alt="coverPhoto" class="d-flex align-items-center justify-content-center bg-primary bg-opacity-25 w-100 h-100">
                         </div>
                     
                         <div class="position-absolute p-5">
@@ -32,9 +32,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         </div>
                     </div>
                 </div>
-                <div class="col-12">
-                    <div class="p-5 rounded-2">
-
+                <div class="col-12 p-0">
+                    <div class="p-5">
+                        <h3><?= $usersDetails['firstName'] . ($usersDetails['middleName'] ? " " . $usersDetails['middleName'] : "") . " " . $usersDetails['lastName'] . ($usersDetails['suffix'] ? " " . $usersDetails['suffix'] : ""); ?></h3>
                     </div>
                 </div>
             </div>
