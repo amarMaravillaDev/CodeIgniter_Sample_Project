@@ -18,7 +18,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class="col-12 col-sm-6 d-flex justify-content-center justify-content-sm-end align-items-center gap-3">
                 <div class="text-light">
                     Hello,
-                    <?= $this->session->userdata('usersDetails')['FIRST_NAME']; ?>
+                    <?= $usersDetails['firstName']; ?>
                 </div>
                 <div
                     class="navBarProfile position-relative dropdown shadow bg-light borderRadiusFull d-flex align-items-center justify-content-center p-4">
