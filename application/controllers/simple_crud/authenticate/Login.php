@@ -79,15 +79,17 @@ class Login extends CI_Controller
             if ($response != FALSE) {
                 if (password_verify($this->input->post('loginPassword'), $response->PASSWORD)) {
                     $usersDetails = array(
-                        "FIRST_NAME" => $response->FIRST_NAME,
-                        "MIDDLE_NAME" => $response->MIDDLE_NAME,
-                        "LAST_NAME" => $response->LAST_NAME,
-                        "GENDER" => $response->GENDER,
-                        "BIRTH_DATE" => $response->BIRTH_DATE,
-                        "AGE" => $response->AGE,
-                        "CONTACT_NUMBER" => $response->CONTACT_NUMBER,
-                        "EMAIL_ADDRESS" => $response->EMAIL_ADDRESS,
-                        "PASSWORD" => $response->PASSWORD
+                        "usersID" => $response->USERS_ID,
+                        "firstName" => $response->FIRST_NAME,
+                        "middleName" => $response->MIDDLE_NAME,
+                        "lastName" => $response->LAST_NAME,
+                        "suffix" => $response->SUFFIX,
+                        "gender" => $response->GENDER,
+                        "birthDate" => $response->BIRTH_DATE,
+                        "age" => $response->AGE,
+                        "contactNumber" => $response->CONTACT_NUMBER,
+                        "emailAddress" => $response->EMAIL_ADDRESS,
+                        // "PASSWORD" => $response->PASSWORD
                     );
 
                     $this->session->set_userdata('userType', $response->USER_TYPE);
