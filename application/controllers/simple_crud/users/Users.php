@@ -59,9 +59,21 @@ class Users extends CI_Controller
         // Main View Variables
         $viewsMainData = array(
             "documentData" => array(
-                "title" => "| " . $this->session->userdata('usersDetails')['FIRST_NAME'] . " " . $this->session->userdata('usersDetails')['LAST_NAME'],
+                "title" => "| " . $this->session->userdata('usersDetails')['firstName'] . " " . $this->session->userdata('usersDetails')['lastName'],
                 "css" => "",
                 "script" => "Users"
+            ),
+            "usersDetails" => array(
+                "usersID" => $this->session->userdata('usersDetails')['usersID'],
+                "firstName" => $this->session->userdata('usersDetails')['firstName'],
+                "middleName" => $this->session->userdata('usersDetails')['middleName'] ? substr($this->session->userdata('usersDetails')['middleName'], 0, 1) : "",
+                "lastName" => $this->session->userdata('usersDetails')['lastName'],
+                "suffix" => $this->session->userdata('usersDetails')['suffix'] ? $this->session->userdata('usersDetails')['suffix'] : "",
+                "gender" => $this->session->userdata('usersDetails')['gender'],
+                "birthDate" => date("M d, Y", strtotime($this->session->userdata('usersDetails')['birthDate'])),
+                "age" => $this->session->userdata('usersDetails')['age'],
+                "contactNumber" => $this->session->userdata('usersDetails')['contactNumber'],
+                "emailAddress" => $this->session->userdata('usersDetails')['emailAddress'],
             ),
             "viewsData" => $viewsData,
             "sideBar" => array(
@@ -250,7 +262,8 @@ class Users extends CI_Controller
         $this->index($viewsData);
     }
 
-    public function myProfile() {
+    public function myProfile()
+    {
         $viewsData = array(
             "view" => "simple_crud/users/MyProfile",
         );
@@ -258,7 +271,8 @@ class Users extends CI_Controller
         $this->index($viewsData);
     }
 
-    public function editMyProfile() {
+    public function editMyProfile()
+    {
         $viewsData = array(
             "view" => "simple_crud/users/EditMyProfile",
         );
@@ -266,7 +280,8 @@ class Users extends CI_Controller
         $this->index($viewsData);
     }
 
-    public function changePassword() {
+    public function changePassword()
+    {
         $viewsData = array(
             "view" => "simple_crud/users/ChangePassword",
         );
