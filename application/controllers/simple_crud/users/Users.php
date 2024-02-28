@@ -74,6 +74,7 @@ class Users extends CI_Controller
                 "age" => $this->session->userdata('usersDetails')['age'],
                 "contactNumber" => $this->session->userdata('usersDetails')['contactNumber'],
                 "emailAddress" => $this->session->userdata('usersDetails')['emailAddress'],
+                "coverPhoto" => "",
                 "profilePicture" => ""
             ),
             "viewsData" => $viewsData,
