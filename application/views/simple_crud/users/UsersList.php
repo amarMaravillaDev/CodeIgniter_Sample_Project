@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 ?>
 
-<main class="border-end border-primary w-100 h-100 d-flex flex-column align-items-center overflow-auto">
+<main class="border-end border-primary w-100 h-100 d-flex flex-column align-items-center">
     <!-- Top Navigations -->
     <div class="col-12 p-4 border-bottom border-primary">
         <div class="row">
