@@ -23,7 +23,7 @@ class Users extends CI_Controller
 
     public function index($viewsData = "")
     {
-        // Default View Variables
+        // * Default View Variables
         if (!$viewsData) {
             $activeUsers = $this->Users->activeUsers();
             $inactiveUsers = $this->Users->inactiveUsers();
@@ -56,7 +56,7 @@ class Users extends CI_Controller
             );
         }
 
-        // Main View Variables
+        // * Main View Variables
         $viewsMainData = array(
             "documentData" => array(
                 "title" => "| " . $this->session->userdata('usersDetails')['firstName'] . " " . $this->session->userdata('usersDetails')['lastName'],
@@ -74,6 +74,7 @@ class Users extends CI_Controller
                 "age" => $this->session->userdata('usersDetails')['age'],
                 "contactNumber" => $this->session->userdata('usersDetails')['contactNumber'],
                 "emailAddress" => $this->session->userdata('usersDetails')['emailAddress'],
+                "profilePicture" => ""
             ),
             "viewsData" => $viewsData,
             "sideBar" => array(
@@ -126,7 +127,7 @@ class Users extends CI_Controller
 
     public function usersList()
     {
-        // Pagination
+        // * Pagination
         $pageFilters = array(
             "5",
             "10",
@@ -171,7 +172,7 @@ class Users extends CI_Controller
             $totalRows = $this->Users->searchUsers("", "", "", "", "", TRUE);
         }
 
-        // Pagination Configurations
+        // * Pagination Configurations
         $paginationConfig['base_url'] = base_url('simple_crud/users/users_list');
         $paginationConfig['attributes'] = array('class' => 'page-link bg-primary bg-opacity-10 fs-6 p-3 px-4 border-0 btn btn-primary d-flex justify-content-center align-items-center');
         $paginationConfig['total_rows'] = $totalRows;
@@ -201,16 +202,16 @@ class Users extends CI_Controller
         $paginationConfig['num_tag_open'] = '<li class="page-item">';
         $paginationConfig['num_tag_close'] = '</li>';
 
-        // Initialize the Pagination
+        // * Initialize the Pagination
         $this->pagination->initialize($paginationConfig);
 
         // echo '<script> console.log(`Pagination: `, ' . json_encode($pagination) . '); </script>';
 
-        // Table
+        // * Table
         // $usersListSeeds = $this->Users->usersListSeeds();
         // $usersList = $this->Users->usersList();
 
-        // Table Columns to be shown
+        // * Table Columns to be shown
         $tableColumns = array(
             array("tableColumn" => "FIRST NAME", "dbColumn" => "FIRST_NAME"),
             array("tableColumn" => "MIDDLE NAME", "dbColumn" => "MIDDLE_NAME"),
@@ -224,7 +225,7 @@ class Users extends CI_Controller
             array("tableColumn" => "STATUS", "dbColumn" => "STATUS")
         );
 
-        // Table Columns not to be shown
+        // * Table Columns not to be shown
         $tableColumnsNotShown = array(
             "USERS_ID",
             "USER_TYPE",
@@ -234,6 +235,7 @@ class Users extends CI_Controller
 
         $itemTo = min((int) $totalRows, ((int) $startIndex + (int) $rowFilter));
 
+        // * View Data
         $viewsData = array(
             "view" => "simple_crud/users/UsersList",
             "usersSeedsTable" => array(
