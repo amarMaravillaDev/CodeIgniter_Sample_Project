@@ -253,7 +253,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     <span class="material-symbols-rounded">
                                                         lock
                                                     </span>
-                                                    <h5>SECURITY INFORMATION</h5>
+                                                    <h5>CONTACT AND SECURITY INFORMATION</h5>
                                                 </div>
                                             </div>
                                             <div class="col-12">
