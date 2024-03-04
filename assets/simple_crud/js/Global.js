@@ -13,6 +13,15 @@ const globalFunctions = (() => {
 				toastBS.show();
 			}
 
+			// Modal
+			// const myModal = $(`myModal`);
+			// const myInput = $(`myInput`);
+
+			// myModal.on(`shown.bs.modal`, () => {
+			// 	console.log($(this));
+			// 	myInput.focus();
+			// });
+
 			// Show Password
 			$(`.showPassword`).on(`click`, function (event) {
 				event.preventDefault();
@@ -24,12 +33,12 @@ const globalFunctions = (() => {
 					.find(`.password`);
 
 				if ($.trim(showPasswordIcon.text()) == `visibility`) {
-					console.log(showPasswordIcon.text() + " 1");
+					console.log(showPasswordIcon.text() + ` 1`);
 					showPasswordIcon.text(`visibility_off`);
 
 					passwordInput.attr(`type`, `text`);
 				} else {
-					console.log(showPasswordIcon.text() + " 2");
+					console.log(showPasswordIcon.text() + ` 2`);
 					showPasswordIcon.text(`visibility`);
 
 					passwordInput.attr(`type`, `password`);
@@ -43,11 +52,23 @@ const globalFunctions = (() => {
 				if ($(this).attr(`href`) === currentURL.split(`?`)[0]) {
 					$(this).addClass(`active fw-bold`);
 
-					if($(this).parent().parent().prev().find(`button`)) {
-						$(this).parent().parent().prev().find(`button`).addClass(`active fw-bold`);
+					if ($(this).parent().parent().prev().find(`button`)) {
+						$(this)
+							.parent()
+							.parent()
+							.prev()
+							.find(`button`)
+							.addClass(`active fw-bold`);
 					}
 
-					if($(this).parent().parent().prev().find(`button`).hasClass(`active fw-bold`)) {
+					if (
+						$(this)
+							.parent()
+							.parent()
+							.prev()
+							.find(`button`)
+							.hasClass(`active fw-bold`)
+					) {
 						$(this).parent().parent().prev().find(`button`).trigger(`click`);
 					}
 				}
@@ -74,10 +95,16 @@ const globalFunctions = (() => {
 			});
 
 			// Buttons
-			$(`button[type=submit]`).on(`click`, function() {
-				let spinner = $('<div>').addClass('spinner-grow spinner-grow-sm').attr('role', 'status');
-				
-				$(this).addClass(`disabled d-flex align-items-center justify-content-center gap-2`).prepend(spinner);
+			$(`button[type=submit]`).on(`click`, function () {
+				let spinner = $(`<div>`)
+					.addClass(`spinner-grow spinner-grow-sm`)
+					.attr(`role`, `status`);
+
+				$(this)
+					.addClass(
+						`disabled d-flex align-items-center justify-content-center gap-3`
+					)
+					.prepend(spinner);
 			});
 
 			// $(`form`).on(`submit`, function(event) {
@@ -87,6 +114,7 @@ const globalFunctions = (() => {
 	};
 })();
 
+// Ready Document
 $(document).ready(() => {
 	globalFunctions.initialize();
 });
