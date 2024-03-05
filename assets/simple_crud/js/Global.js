@@ -14,13 +14,12 @@ const globalFunctions = (() => {
 			}
 
 			// Modal
-			// const myModal = $(`myModal`);
-			// const myInput = $(`myInput`);
+			const myModal = $(`.modal`);
+			const myInput = $(`#myInput`);
 
-			// myModal.on(`shown.bs.modal`, () => {
-			// 	console.log($(this));
-			// 	myInput.focus();
-			// });
+			myModal.on(`shown.bs.modal`, function () {
+				myInput.focus();
+			});
 
 			// Show Password
 			$(`.showPassword`).on(`click`, function (event) {
