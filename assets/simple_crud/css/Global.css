@@ -164,7 +164,18 @@ th i::before {
 /* Nav Bar Profile */
 .navBarProfile {
 	width: 55px;
-	height: 55px;
+	aspect-ratio: 1;
+}
+
+.navBarProfilePicture img {
+	width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+}
+
+.navBarProfile button {
+	width: 20px;
+	aspect-ratio: 1;
 }
 
 /* Side Bar */
@@ -269,10 +280,10 @@ th i::before {
 }
 
 /* Square Extra Small */
-.squareXSm {
+/* .squareXSm {
 	width: 12px;
 	height: 12px;
-}
+} */
 
 /* Dropdown for Logout Button */
 /* .dropDownLogout {
@@ -297,14 +308,27 @@ th i::before {
 }
 
 /* Profile Image */
-.profileImage {
+.profilePicture {
 	width: 180px;
-	height: 180px;
+	aspect-ratio: 1;
 	border-radius: 100%;
 }
 
-.profileImage span {
+.profilePicture span.picture {
 	font-size: 100px;
+}
+
+.profilePicture img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+}
+
+.profilePicture button {
+	width: 32px;
+	aspect-ratio: 1;
+	right: 12px;
+	bottom: 12px;
 }
 
 /* Vertical Divider */
