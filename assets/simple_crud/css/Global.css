@@ -307,7 +307,7 @@ th i::before {
 	height: 200px;
 }
 
-/* Profile Image */
+/* Profile Picture */
 .profilePicture {
 	width: 180px;
 	aspect-ratio: 1;
@@ -331,30 +331,57 @@ th i::before {
 	bottom: 12px;
 }
 
+/* Cover Photo */
+.coverPhoto {
+	height: 200px;
+}
+
+.coverPhoto img {
+	width: 100%;
+    height: 200px;
+    object-fit: contain;
+}
+
+/* View Profile */
+.viewProfilePicture {
+	width: 100%;
+    aspect-ratio: 1;
+}
+
+.viewProfilePicture span.picture {
+	font-size: 200px;
+}
+
+.viewProfilePicture img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+}
+
 /* Vertical Divider */
-.verticalDivider {
+/* .verticalDivider {
 	width: 1px;
 	padding: 0;
 	margin: 0;
-}
+} */
 
 /* Horizontal Divider */
-.horizontalDivider {
+/* .horizontalDivider {
 	height: 1px;
 	padding: 0;
 	margin: 0;
-}
+} */
 
 /* Show and Hide Animation */
 
-.showHide {
+/* .showHide {
 	animation: show 0.5s ease-in-out 0s forwards,
 		hide 0.5s ease-in-out 5s forwards;
-}
+} */
 
 /* KeyFrames Animations */
 /* Show */
-@keyframes show {
+/* @keyframes show {
 	0% {
 		display: block;
 		opacity: 0;
@@ -362,10 +389,10 @@ th i::before {
 	100% {
 		opacity: 1;
 	}
-}
+} */
 
 /* Hide */
-@keyframes hide {
+/* @keyframes hide {
 	0% {
 		opacity: 1;
 	}
@@ -375,4 +402,4 @@ th i::before {
 	100% {
 		display: none;
 	}
-}
+} */
