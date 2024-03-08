@@ -156,11 +156,6 @@ th i::before {
 	justify-content: center;
 }
 
-/* Table Loader */
-.tableLoader {
-	display: flex;
-}
-
 /* Nav Bar Profile */
 .navBarProfile {
 	width: 55px;
@@ -346,6 +341,7 @@ th i::before {
 .viewProfilePicture {
 	width: 100%;
     aspect-ratio: 1;
+	display: flex;
 }
 
 .viewProfilePicture span.picture {
@@ -356,6 +352,22 @@ th i::before {
     width: 100%;
     aspect-ratio: 1;
     object-fit: contain;
+}
+
+/* Modal Body */
+.modal-body {
+	aspect-ratio: 1;
+}
+
+/* Modal Loader */
+/* .modalLoader {
+	aspect-ratio: 1;
+} */
+
+/* Loader */
+.loader {
+	inset: 0;
+	display: flex;
 }
 
 /* Vertical Divider */
