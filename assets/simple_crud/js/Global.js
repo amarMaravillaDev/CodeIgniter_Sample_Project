@@ -32,12 +32,10 @@ const globalFunctions = (() => {
 					.find(`.password`);
 
 				if ($.trim(showPasswordIcon.text()) == `visibility`) {
-					console.log(showPasswordIcon.text() + ` 1`);
 					showPasswordIcon.text(`visibility_off`);
 
 					passwordInput.attr(`type`, `text`);
 				} else {
-					console.log(showPasswordIcon.text() + ` 2`);
 					showPasswordIcon.text(`visibility`);
 
 					passwordInput.attr(`type`, `password`);
@@ -48,7 +46,7 @@ const globalFunctions = (() => {
 			let currentURL = window.location.href;
 
 			$(`.sideBar a`).each(function () {
-				if ($(this).attr(`href`) === currentURL.split(`?`)[0]) {
+				if ($(this).attr(`href`) === currentURL.replace(/(\?|#).*$/, '')) {
 					$(this).addClass(`active fw-bold`);
 
 					if ($(this).parent().parent().prev().find(`button`)) {
@@ -99,6 +97,8 @@ const globalFunctions = (() => {
 					.addClass(`spinner-grow spinner-grow-sm`)
 					.attr(`role`, `status`);
 
+					$(this).find(`.spinner-grow.spinner-grow-sm`).remove();
+
 				$(this)
 					.addClass(
 						`disabled d-flex align-items-center justify-content-center gap-3`
@@ -106,7 +106,7 @@ const globalFunctions = (() => {
 					.prepend(spinner);
 			});
 
-			// $(`form`).on(`submit`, function(event) {
+			// $(`form`).on(`submit`, function (event) {
 			// 	event.preventDefault();
 			// });
 		},
