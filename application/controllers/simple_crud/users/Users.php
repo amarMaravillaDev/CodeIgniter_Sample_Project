@@ -74,8 +74,8 @@ class Users extends CI_Controller
                 "age" => $this->session->userdata('usersDetails')['age'],
                 "contactNumber" => $this->session->userdata('usersDetails')['contactNumber'],
                 "emailAddress" => $this->session->userdata('usersDetails')['emailAddress'],
-                "coverPhoto" => "",
-                "profilePicture" => ""
+                "coverPhoto" => "https://passion-stickers.com/5210-large_default/lilo-of-lilo-and-stitch.jpg",
+                "profilePicture" => "https://passion-stickers.com/5210-large_default/lilo-of-lilo-and-stitch.jpg",
             ),
             "viewsData" => $viewsData,
             "sideBar" => array(
@@ -290,5 +290,28 @@ class Users extends CI_Controller
         );
 
         $this->index($viewsData);
+    }
+
+    public function viewProfilePicture()
+    {
+        log_message('info', 'Log Info');
+
+        $profilePicture = array(
+            "profilePicture" => "https://passion-stickers.com/5210-large_default/lilo-of-lilo-and-stitch.jpg",
+        );
+
+        $modal = array(
+            "modalHeader" => array(
+                "title" => "View Profile Picture",
+                "titleLogo" => "photo",
+                "titleTextColor" => "text-primary"
+            ),
+            "modalBody" => $this->load->view('simple_crud/users/ViewProfilePicture', $profilePicture, TRUE),
+            // "modalFooter" => "",
+        );
+
+        // echo $this->load->view('simple_crud/users/ViewProfilePicture', $profilePicture, TRUE);
+
+        echo json_encode($modal);
     }
 }
