@@ -15,7 +15,8 @@ class Login extends CI_Controller
                 array(
                     'toastStatus' => 'primary',
                     'toastMessage' => 'You are Already Logged In.',
-                    'toastIcon' => 'info'
+                    'toastIcon' => 'info',
+                    'toastShow' => TRUE,
                 )
             );
 
@@ -100,7 +101,8 @@ class Login extends CI_Controller
                         array(
                             'toastStatus' => 'success',
                             'toastMessage' => 'You are Logged In Successfully.',
-                            'toastIcon' => 'check_circle'
+                            'toastIcon' => 'check_circle',
+                            'toastShow' => TRUE,
                         )
                     );
 
@@ -111,7 +113,8 @@ class Login extends CI_Controller
                         array(
                             'toastStatus' => 'danger',
                             'toastMessage' => 'Invalid Email or Password.',
-                            'toastIcon' => 'error'
+                            'toastIcon' => 'error',
+                            'toastShow' => TRUE,
                         )
                     );
 
@@ -123,7 +126,8 @@ class Login extends CI_Controller
                     array(
                         'toastStatus' => 'danger',
                         'toastMessage' => 'Invalid Email or Password.',
-                        'toastIcon' => 'error'
+                        'toastIcon' => 'error',
+                        'toastShow' => TRUE,
                     )
                 );
 
