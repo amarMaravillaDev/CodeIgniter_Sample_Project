@@ -1,14 +1,16 @@
 const globalFunctions = (() => {
+	// * Global Variables
+	// * Toast Variables
+	const toasts = $(`#toast`);
+	const toastBS = bootstrap.Toast.getOrCreateInstance(toasts);
+
 	return {
 		initialize: () => {
 			// Cards
 			$(`.fadeIn`).fadeIn(`slow`);
 
-			// Toast
-			const toasts = $(`#liveToast`);
-
-			if (toasts.length) {
-				const toastBS = bootstrap.Toast.getOrCreateInstance(toasts);
+			if (toasts.hasClass(`show`)) {
+				toasts.removeClass(`show`);
 
 				toastBS.show();
 			}
@@ -97,7 +99,7 @@ const globalFunctions = (() => {
 					.addClass(`spinner-grow spinner-grow-sm`)
 					.attr(`role`, `status`);
 
-					$(this).find(`.spinner-grow.spinner-grow-sm`).remove();
+				$(this).find(`.spinner-grow.spinner-grow-sm`).remove();
 
 				$(this)
 					.addClass(
@@ -109,6 +111,36 @@ const globalFunctions = (() => {
 			// $(`form`).on(`submit`, function (event) {
 			// 	event.preventDefault();
 			// });
+		},
+		toast: (toastStatus = "", toastMessage = "", toastIcon = "") => {
+			// console.log(toastData);
+
+			// let toastClasses =  $(`.toast`).attr("class").split(" ");
+
+			// let removeToastClass = globalFunctions.classFinder(toastClasses, [`border`]);
+
+			// * Toast
+			$(`.toast`).addClass(`border-${toastStatus}`);
+
+			// * Toast Header
+			$(`.toast-header`).addClass(`border-${toastStatus}`);
+			$(`.toast-header`).find(`.toast-title`).addClass(`text-${toastStatus}`);
+
+			// * Toast Body
+			$(`.toast-body`).addClass(`bg-${toastStatus} text-light`);
+			$(`.toast-body`).find(`span`).text(`${toastIcon}`);
+			$(`.toast-body`).find(`p`).text(`${toastMessage}`);
+
+			toastBS.show();
+		},
+		classFinder: (classes, findClass) => {
+			let findingClass = classes.filter(function (className) {
+				return findClass.some(function (keyword) {
+					return className.includes(keyword);
+				});
+			});
+
+			return findingClass;
 		},
 	};
 })();
