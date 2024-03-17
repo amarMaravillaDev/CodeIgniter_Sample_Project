@@ -204,11 +204,6 @@ th i::before {
 	border-bottom-left-radius: 0;
 }
 
-/* .accordion-item:first-of-type a.btn {
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-} */
-
 .accordion-item a.btn:hover {
 	background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity));
 }
